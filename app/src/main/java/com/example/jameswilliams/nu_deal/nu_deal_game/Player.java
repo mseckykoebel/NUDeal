@@ -31,6 +31,7 @@ public class Player
     public Card removeFromBank(int n){return bank.remove(n);}
 
     public int getHandSize(){return hand.size();}
+    public int getBankSize(){return bank.size();}
 
     public Card getCard(int c)
     {

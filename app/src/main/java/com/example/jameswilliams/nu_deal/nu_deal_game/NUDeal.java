@@ -122,14 +122,23 @@ public class NUDeal {
     //Returns the card string of player p
     private String getPlayerCardString(int p)
     {
-        String cards = ""
+        String cards = "Hand:\n";
         //Generate the hand string
         for(int i = 0; i < g.getPlayers().get(p).getHandSize(); i++)
         {
             Card currentCard = g.getPlayers().get(p).getCard(i);
-            String thisCard = Integer.toString(i) + ". " + currentCard.getName();
+            String thisCard = Integer.toString(i) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
+            cards += thisCard + "\n";
         }
 
+        //Generate the bank string
+        cards += "Bank:\n";
+        for(int i = 0; i < g.getPlayers().get(p).getBankSize(); i++)
+        {
+            Card currentCard = g.getPlayers().get(p).getCard(i);
+            String thisCard = Integer.toString(i) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
+            cards += thisCard + "\n";
+        }
         return cards;
     }
 
