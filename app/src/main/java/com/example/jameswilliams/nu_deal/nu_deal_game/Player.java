@@ -6,7 +6,7 @@ public class Player
 {
     private ArrayList<Card> hand;
     private ArrayList<Card> bank;
-    public String name;
+    private String name;
 
     public Player(String n)
     {
@@ -32,9 +32,16 @@ public class Player
 
     public int getHandSize(){return hand.size();}
 
+    public Card getCard(int c)
+    {
+        return hand.get(c);
+    }
+
     public void reset()
     {
         hand.clear();
         bank.clear();
     }
+
+    public String getName(){return name;}
 }

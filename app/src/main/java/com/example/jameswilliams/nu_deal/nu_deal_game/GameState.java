@@ -93,6 +93,31 @@ public class GameState
         return allCards;
     }
 
+    public int whoseTurn()
+    {
+        return whose_turn;
+    }
+
+    public void nextTurn()
+    {
+        if(whose_turn == players.size() - 1)
+        {
+            whose_turn = 0;
+        }else {
+            whose_turn++;
+        }
+    }
+
+    public Player winDetected()
+    {
+        ///TODO
+        return null;
+    }
+
+    //////////////////
+    //Player Dealing//
+    //////////////////
+
     private void dealPlayersIn()
     {
         //Deal each player 5 cards
@@ -103,6 +128,48 @@ public class GameState
                 players.get(j).addToHand(drawPile.remove(0));
             }
         }
+    }
+
+    //Deals player p n cards
+    public void dealPlayer(int p, int n)
+    {
+        for(int i = 0; i < n; i++)
+        {
+            players.get(p).addToHand(drawPile.remove(0));
+        }
+    }
+
+    public int getDrawPileSize()
+    {
+        return drawPile.size();
+    }
+
+    //Shuffles the discard pile and adds it to the end of the deck
+    private void shuffleDiscard()
+    {
+        Collections.shuffle(discardPile);
+        for(int i = 0; i < discardPile.size(); i++)
+        {
+            drawPile.add(discardPile.remove(0));
+        }
+    }
+
+    public ArrayList<Player> getPlayers()
+    {
+        return players;
+    }
+
+    public CardResponse playCard(int p, int c, UserInterface u)
+    {
+        CardResponse response = players.get(p).getCard(c).playCard(this, u, p);
+        //If the card was played successfully
+        if(response.success)
+        {
+            //Remove it from the players hand
+            players.get(p).removeFromHand(c);
+        }
+        //Otherwise just return the response message
+        return response;
     }
 
     //Initializes the allCards array

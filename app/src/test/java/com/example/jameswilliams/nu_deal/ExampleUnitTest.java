@@ -33,10 +33,10 @@ public class ExampleUnitTest {
         g.initGame();
 
         //Make sure we have 106 cards
-        //assertEquals(106, g.getAllCardSize());
+        assertEquals(108, g.getAllCardSize());
 
         //Make sure we have 45 properties including hotels and houses
-        //20 money cards, and 41 action cards
+        //20 money cards, and 43 action cards
         ArrayList<Card> cards = g.getAllCards();
         int moneyCards = 0;
         int propertyCards = 0;
@@ -58,6 +58,43 @@ public class ExampleUnitTest {
 
         assertEquals(20, moneyCards);
         assertEquals(45, propertyCards);
-        assertEquals(41, actionCards);
+        assertEquals(43, actionCards);
+
+        //Make sure each player has 4 cards
+        ArrayList<Player> players = g.getPlayers();
+
+        for(int i = 0; i < players.size(); i++)
+        {
+            assertEquals(5, players.get(i).getHandSize());
+        }
+
+        //Make sure the draw pile size is correct
+        assertEquals(108-(g.getPlayers().size()*5), g.getDrawPileSize());
+    }
+
+    @Test
+    public void player_dealing_works()
+    {
+        GameState g = new GameState();
+        //Generate a test player
+        g.addPlayer(new Player("James"));
+        g.addPlayer(new Player("Mason"));
+        g.addPlayer(new Player("Sam"));
+
+        g.initGame();
+
+        //Try dealing all players two cards
+        for(int i = 0; i < g.getPlayers().size(); i++)
+        {
+            g.dealPlayer(i, 2);
+            assertEquals(7, g.getPlayers().get(i).getHandSize());
+        }
+
+        //Try dealing all players five cards
+        for(int i = 0; i < g.getPlayers().size(); i++)
+        {
+            g.dealPlayer(i, 5);
+            assertEquals(12, g.getPlayers().get(i).getHandSize());
+        }
     }
 }

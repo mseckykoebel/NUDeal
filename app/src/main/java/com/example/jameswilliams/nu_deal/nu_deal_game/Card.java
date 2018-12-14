@@ -4,19 +4,23 @@ public abstract class Card
 {
 
     //Internal Variables
-    public String name;//"Boardwalk"
-    public int value;//"4"
-    public boolean bankable;//false
+    private String name;//"Boardwalk"
+    private int value;//"4"
+    private boolean bankable;//false
 
     public Card()
     {
 
     }
 
+    public String getName(){return name;}
+    public int getValue(){return value;}
+    public boolean isBankable() { return bankable; }
+
     //Should return "success" if play was successful, error message otherwise
-    public String playCard(GameState g, int playernum, int targetnum)
+    public CardResponse playCard(GameState g, UserInterface u, int playernum)
     {
-        return "Method not implemented for this card";
+        return new CardResponse(false, "Method not implemented for this card");
     }
 
 }
