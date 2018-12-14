@@ -1,4 +1,5 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
+import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.*;
 
 import java.util.ArrayList;
 
@@ -17,11 +18,48 @@ public class GameState
     private final int num4Mil = 3;
     private final int num5Mil = 2;
     private final int num10Mil = 1;
+
+    private final int numDealBreakers = 2;
+    private final int numSlyDeals = 3;
+    private final int numForcedDeals = 3;
+    private final int numGlobalRents = 2;
+    private final int numWildRents = 3;
+    private final int numDebtCollectors = 3;
+    private final int numBirthdays = 3;
+    private final int numDoubleRents = 2;
+    private final int numPassGos = 10;
+
     
 
     public void reset()
     {
         //Remove all of the players cards and put them into the deck.
+    }
+
+    public void addPlayer(Player p)
+    {
+        players.add(p);
+    }
+
+    //Retuns true if game was successfully initialized, false otherwise
+    public boolean initGame()
+    {
+        //If we don't have enough players
+        if(players.size() < 2)
+        {
+            System.out.println("Error, game state must have more than two players before being initialized");
+            return false;
+        }
+
+        //Add all cards allCards
+
+        //Add all cards to deck and shuffle
+
+        //Deal cards to players
+
+        //Player 0 will start
+
+        return true;
     }
 
     //Initializes the allCards array
@@ -68,8 +106,9 @@ public class GameState
         }
 
         //1 10 Million Dollar Card
-        allCards.add(new MoneyCard(10));
-
+        for(int i = 0; i < num10Mil; i++) {
+            allCards.add(new MoneyCard(10));
+        }
 
     }
 
@@ -115,14 +154,14 @@ public class GameState
 
         // Utilities
         // Color group is grey
-        allCards.add(new PropertyCard( "ElectricCompany", "Grey", 2));
-        allCards.add(new PropertyCard( "WaterWorks", "Grey", 2));
+        allCards.add(new PropertyCard( "ElectricCompany", "Utility", 2));
+        allCards.add(new PropertyCard( "WaterWorks", "Utility", 2));
 
         //Railroads
-        allCards.add(new PropertyCard("ShortLine", "Black",2 ));
-        allCards.add(new PropertyCard("ReadingRailroad", "Black",2));
-        allCards.add(new PropertyCard("B&ORailroad","Black",2));
-        allCards.add(new PropertyCard("PennsylvaniaRailroad","Black",2));
+        allCards.add(new PropertyCard("ShortLine", "Railroad",2 ));
+        allCards.add(new PropertyCard("ReadingRailroad", "Railroad",2));
+        allCards.add(new PropertyCard("B&ORailroad","Railroad",2));
+        allCards.add(new PropertyCard("PennsylvaniaRailroad","Railroad",2));
 
         //Two Type Wild Cards
         allCards.add(new PropertyCard("RedYellow1","Red","Yellow",3));
@@ -153,5 +192,71 @@ public class GameState
 
     }
 
-    void addActionCards(){}
+    void addActionCards()
+    {
+        //Two Deal Breakers
+        for(int i = 0; i < numDealBreakers; i++)
+        {
+            allCards.add(new DealBreaker());
+        }
+
+        //Three sly deals
+        for(int i = 0; i < numSlyDeals; i++)
+        {
+            allCards.add(new SlyDeal());
+        }
+
+        //Three Forced Deals
+        for(int i = 0; i < numForcedDeals; i++)
+        {
+            allCards.add(new ForcedDeal());
+        }
+
+        //Global Rent Cards
+        for(int i = 0; i < numGlobalRents; i++)
+        {
+            //Blue Green Rents
+            allCards.add(new RentCard("Blue", "Green"));
+            //Red Yellow Rents
+            allCards.add(new RentCard("Red", "Yellow"));
+            //SkyBlue SaddleBrown Rents
+            allCards.add(new RentCard("SkyBlue", "SaddleBrown"));
+            //Orange DarkOrchid Rents
+            allCards.add(new RentCard("Orange", "DarkOrchid"));
+            //Railroad Utility Rents
+            allCards.add(new RentCard("Railroad", "Utility"));
+        }
+
+        //Wild Rent Cards
+        for(int i = 0; i < numWildRents; i++)
+        {
+            allCards.add(new WildRentCard());
+        }
+
+        //Three Debt Collectors
+        for(int i = 0; i < numDebtCollectors; i++)
+        {
+            allCards.add(new DebtCollector());
+        }
+
+        //Three Birthdays
+        for(int i = 0; i < numBirthdays; i++)
+        {
+            allCards.add(new Birthday());
+        }
+
+        //Two Double Rents
+        for(int i = 0; i < numDoubleRents; i++)
+        {
+            allCards.add(new DoubleRent());
+        }
+
+        //Ten Pass Gos
+        for(int i = 0; i < numPassGos; i++)
+        {
+            allCards.add(new PassGo());
+        }
+
+
+    }
 }

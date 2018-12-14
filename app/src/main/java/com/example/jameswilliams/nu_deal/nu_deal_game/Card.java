@@ -13,8 +13,8 @@ public abstract class Card
 
     }
 
-    //Should return "success" if play was successfull, error message otherwise
-    public String playCard()
+    //Should return "success" if play was successful, error message otherwise
+    public String playCard(GameState g, int playernum, int targetnum)
     {
         return "Method not implemented for this card";
     }

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 public class Player
 {
-    public ArrayList<Card> hand;
+    private ArrayList<Card> hand;
+    private ArrayList<Card> bank;
     public int number;
     public String name;
 
@@ -12,6 +13,9 @@ public class Player
     {
         number = num;
         name = n;
+        hand = new ArrayList<Card>();
+        bank = new ArrayList<Card>();
+
     }
 
     public void addToHand(Card c)
@@ -23,4 +27,10 @@ public class Player
     {
         return hand.remove(n);
     }
+
+    public void addToBank(Card c){bank.add(c);}
+
+    public Card removeFromBank(int n){return bank.remove(n);}
+
+    public int getHandSize(){return hand.size();}
 }
