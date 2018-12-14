@@ -2,15 +2,16 @@ package com.example.jameswilliams.nu_deal.nu_deal_game;
 import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class GameState
 {
-    public ArrayList<Player> players;
-    public ArrayList<Card> allCards;
-    public ArrayList<Card> drawPile;
-    public ArrayList<Card> discardPile;
-    public boolean direction;//True is low to high, false is high to low
-    public int whos_turn;
+    private ArrayList<Player> players;
+    private ArrayList<Card> allCards;
+    private ArrayList<Card> drawPile;
+    private ArrayList<Card> discardPile;
+    private boolean direction;//True is low to high, false is high to low
+    private int whose_turn;
 
     private final int num1Mil = 6;
     private final int num2Mil = 5;
@@ -21,20 +22,28 @@ public class GameState
 
     private final int numDealBreakers = 2;
     private final int numSlyDeals = 3;
-    private final int numForcedDeals = 3;
+    private final int numForcedDeals = 4;
     private final int numGlobalRents = 2;
     private final int numWildRents = 3;
     private final int numDebtCollectors = 3;
     private final int numBirthdays = 3;
     private final int numDoubleRents = 2;
     private final int numPassGos = 10;
+    private final int numJustSayNos = 3;
 
     
-
-    public void reset()
+    public GameState()
     {
-        //Remove all of the players cards and put them into the deck.
+        allCards = new ArrayList<Card>();
+        drawPile = new ArrayList<Card>();
+        discardPile = new ArrayList<Card>();
+        players = new ArrayList<Player>();
+        direction = false;
+        //Player 0 will start
+        whose_turn = 0;
+
     }
+
 
     public void addPlayer(Player p)
     {
@@ -42,6 +51,7 @@ public class GameState
     }
 
     //Retuns true if game was successfully initialized, false otherwise
+    //This will also reset the game state
     public boolean initGame()
     {
         //If we don't have enough players
@@ -51,21 +61,56 @@ public class GameState
             return false;
         }
 
+        //Clear all of the player hands
+        for(int i = 0; i < players.size(); i++)
+        {
+            players.get(i).reset();
+        }
+
         //Add all cards allCards
+        initCards();
 
         //Add all cards to deck and shuffle
+        for(int i = 0; i < allCards.size(); i++)
+        {
+            drawPile.add(allCards.get(i));
+        }
+        Collections.shuffle(drawPile);
 
         //Deal cards to players
-
-        //Player 0 will start
+        dealPlayersIn();
 
         return true;
+    }
+
+    public int getAllCardSize()
+    {
+        return allCards.size();
+    }
+
+    public ArrayList<Card> getAllCards()
+    {
+        return allCards;
+    }
+
+    private void dealPlayersIn()
+    {
+        //Deal each player 5 cards
+        for(int i = 0; i < 5; i++)
+        {
+            for(int j = 0; j < players.size(); j++)
+            {
+                players.get(j).addToHand(drawPile.remove(0));
+            }
+        }
     }
 
     //Initializes the allCards array
     public void initCards()
     {
         allCards.clear();
+        drawPile.clear();
+        discardPile.clear();
 
         addMoneyCards();
         addPropertyCards();
@@ -167,8 +212,9 @@ public class GameState
         allCards.add(new PropertyCard("RedYellow1","Red","Yellow",3));
         allCards.add(new PropertyCard("RedYellow2","Red","Yellow",3));
 
-        allCards.add(new PropertyCard("RailroadSkyBlue","Black","SkyBlue",4));
-        allCards.add(new PropertyCard("RailRoadGrey","Black","Grey",4));
+        allCards.add(new PropertyCard("RailroadSkyBlue","Railroad","SkyBlue",4));
+        allCards.add(new PropertyCard("RailRoadUtility","Railroad","Utility",4));
+        allCards.add(new PropertyCard("RailroadGreen", "Railroad", "Green", 4));
 
         allCards.add(new PropertyCard("OrangeDarkOrchid1","Orange","DarkOrchid",2));
         allCards.add(new PropertyCard("OrangeDarkOrchid2","Orange","DarkOrchid",2));
@@ -178,17 +224,18 @@ public class GameState
         allCards.add(new PropertyCard("SkyBlueSaddleBrown","SkyBlue","SaddleBrown",1));
 
         //Wild Cards
-        allCards.add(new PropertyCard("WildCard1","",0));
-        allCards.add(new PropertyCard("WildCard2","",0));
+        allCards.add(new PropertyCard("WildCard","",0));
+        allCards.add(new PropertyCard("WildCard","",0));
 
         //Houses
-        allCards.add(new PropertyCard("House1",3));
-        allCards.add(new PropertyCard("House2",3));
-        allCards.add(new PropertyCard("House3",3));
+        allCards.add(new PropertyCard("House",3));
+        allCards.add(new PropertyCard("House",3));
+        allCards.add(new PropertyCard("House",3));
 
         //Hotels
-        allCards.add(new PropertyCard("Hotel1",4));
-        allCards.add(new PropertyCard("Hotel2",4));
+        allCards.add(new PropertyCard("Hotel",4));
+        allCards.add(new PropertyCard("Hotel",4));
+        allCards.add(new PropertyCard("Hotel",4));
 
     }
 
@@ -255,6 +302,12 @@ public class GameState
         for(int i = 0; i < numPassGos; i++)
         {
             allCards.add(new PassGo());
+        }
+
+        //Three Just Say Nos
+        for(int i = 0; i < numJustSayNos; i++)
+        {
+            allCards.add(new JustSayNo());
         }
 
 
