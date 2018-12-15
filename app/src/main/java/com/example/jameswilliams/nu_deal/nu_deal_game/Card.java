@@ -4,13 +4,12 @@ public abstract class Card
 {
 
     //Internal Variables
-    private String name;//"Boardwalk"
-    private int value;//"4"
-    private boolean bankable;//false
+    public String name;//"Boardwalk"
+    public int value;//"4"
+    public boolean bankable;//false
 
     public Card()
     {
-
     }
 
     public String getName(){return name;}
