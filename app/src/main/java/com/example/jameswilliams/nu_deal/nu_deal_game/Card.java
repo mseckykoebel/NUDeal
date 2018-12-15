@@ -22,4 +22,19 @@ public abstract class Card
         return new CardResponse(false, "Method not implemented for this card");
     }
 
+    public void removeSelfFromPlayerHand(GameState g, int playernum)
+    {
+        //Figure out which card the player is playing
+        int cardIndex = 0;
+        for(int i = 0; i < g.getPlayers().get(playernum).getHandSize(); i++)
+        {
+            if(g.getPlayers().get(playernum).getFromHand(i).getName() == this.name)
+            {
+                cardIndex = i;
+                break;
+            }
+        }
+        g.getPlayers().get(playernum).removeFromHand(cardIndex);
+    }
+
 }
