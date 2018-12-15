@@ -10,7 +10,7 @@ public class GameState
     private ArrayList<Card> allCards;
     private ArrayList<Card> drawPile;
     private ArrayList<Card> discardPile;
-    private boolean direction;//True is low to high, false is high to low
+    private boolean direction; //True is low to high, false is high to low
     private int whose_turn;
 
     private final int num1Mil = 6;

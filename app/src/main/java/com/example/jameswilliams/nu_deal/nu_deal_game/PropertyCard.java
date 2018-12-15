@@ -22,6 +22,7 @@ public class PropertyCard extends Card
         this.color2 = c2;
         this.value = v;
         this.bankable = true;
+
     }
 
     // Houses and Hotels that Can be banked, and qualify as property cards

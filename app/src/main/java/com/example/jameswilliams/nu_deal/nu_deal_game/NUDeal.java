@@ -5,8 +5,10 @@ import java.io.*;
 
 //Main game class for NUDeal
 //Handles game state as well as the hands
+
+//Main game object
 public class NUDeal {
-    //Main Game object
+
 
     GameState g;
     UserInterface u;
@@ -70,14 +72,14 @@ public class NUDeal {
                         int cardChoice = Integer.parseInt(choice);
                         //If the card choice is out of the range of their hand
                         if (cardChoice >= g.getPlayers().get(g.whoseTurn()).getHandSize() - 1) {
-                            u.displayMessage("Invald card choice, out of range of hand");
+                            u.displayMessage("Invalid card choice, out of range of hand!");
                             continue;
                         }
                         //Play the card
                         CardResponse response = g.playCard(g.whoseTurn(), cardChoice, u);
                         //If the card was played successfully
                         if (response.success) {
-                            u.displayMessage("Card played successfully");
+                            u.displayMessage("Card played!");
                             plays++;
                             continue;
                         } else {
