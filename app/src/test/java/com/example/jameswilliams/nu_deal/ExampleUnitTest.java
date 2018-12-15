@@ -97,4 +97,11 @@ public class ExampleUnitTest {
             assertEquals(12, g.getPlayers().get(i).getHandSize());
         }
     }
+
+    @Test
+    public void basic_game_test()
+    {
+        NUDeal game = new NUDeal();
+        game.runGame();
+    }
 }
