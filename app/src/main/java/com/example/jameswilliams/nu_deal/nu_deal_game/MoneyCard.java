@@ -8,6 +8,7 @@ public class MoneyCard extends Card
         this.value = v;
         this.name = Integer.toString(v) + " million";
         this.bankable = true;
+        this.banked = false;
     }
 
     public CardResponse playCard(GameState g, UserInterface u, int playernum)
