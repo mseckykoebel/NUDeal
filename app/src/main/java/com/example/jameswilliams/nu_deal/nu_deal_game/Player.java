@@ -10,6 +10,7 @@ public class Player
 
     public Player(String n)
     {
+        // the player object contains a name (will be the user name), and two arrays for the hand and the bank
         name = n;
         hand = new ArrayList<Card>();
         bank = new ArrayList<Card>();
@@ -26,7 +27,7 @@ public class Player
         return hand.remove(n);
     }
 
-    public void addToBank(Card c){bank.add(c);}
+    public void addToBank(Card c){ bank.add(c);}
 
     public Card removeFromBank(int n){return bank.remove(n);}
 

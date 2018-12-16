@@ -9,7 +9,6 @@ import java.io.*;
 //Main game object
 public class NUDeal {
 
-
     GameState g;
     UserInterface u;
 

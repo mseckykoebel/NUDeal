@@ -10,6 +10,7 @@ public abstract class Card
 
     public Card()
     {
+
     }
 
     public String getName(){return name;}
