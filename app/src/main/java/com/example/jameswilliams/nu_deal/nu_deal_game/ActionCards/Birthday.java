@@ -40,8 +40,9 @@ public class Birthday extends Card {
                         g.getPlayers().get(playernum).addToBoard(payment);
 
                     }
-                } else if (currentPlayer.getBankSize() + currentPlayer.getBoardSize() == 1) {
-
+                } else if (currentPlayer.getBankSize() + currentPlayer.getBoardSize() == 0) {
+                    u.displayMessage(currentPlayer.getName() + " has no cards, so they don't have to pay");
+                    continue;
                 } else {
                     //Card selection loop
                     while (true) {

@@ -172,6 +172,23 @@ public class GameState
         return response;
     }
 
+    //p is the player to exclude
+    public ArrayList<OKPair> getPlayerPairs(int p)
+    {
+        int plays = 0;
+        ArrayList<OKPair> pls = new ArrayList<OKPair>();
+        for(int i = 0; i < players.size(); i++)
+        {
+            //if we're not on the excluded player
+            if(i != p)
+            {
+                pls.add(new OKPair(players.get(i), plays));
+                plays++;
+            }
+        }
+        return pls;
+    }
+
     //Initializes the allCards array
     public void initCards()
     {
