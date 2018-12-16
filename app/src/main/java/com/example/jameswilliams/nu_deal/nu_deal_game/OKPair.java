@@ -37,4 +37,16 @@ public class OKPair
         }
         return ret;
     }
+
+    public static Object findKey(ArrayList<OKPair> list, int k)
+    {
+        for(int i = 0; i < list.size(); i++)
+        {
+            if(list.get(i).getKey() == k)
+            {
+                return list.get(i).getObject();
+            }
+        }
+        return null;
+    }
 }

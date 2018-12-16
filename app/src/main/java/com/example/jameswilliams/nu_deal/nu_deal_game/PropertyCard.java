@@ -12,6 +12,7 @@ public class PropertyCard extends Card
         this.color2 = "";
         this.value = v;
         this.bankable = false;
+        this.banked = true;
     }
 
     // Property WildCards taking on two color values, and can be banked
@@ -22,6 +23,7 @@ public class PropertyCard extends Card
         this.color2 = c2;
         this.value = v;
         this.bankable = true;
+        this.banked = true;
 
     }
 

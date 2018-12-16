@@ -104,4 +104,10 @@ public class ExampleUnitTest {
         NUDeal game = new NUDeal();
         game.runGame();
     }
+
+    @Test
+    public void window_test()
+    {
+
+    }
 }

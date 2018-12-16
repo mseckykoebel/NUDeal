@@ -30,9 +30,23 @@ public class DebtCollector extends Card {
                     u.displayMessage("Invalid player choice, try again.");
                     continue;
                 } else {
-                       //Prompt that player for debt collection
-                        Player target = (Player)players.get(pchoice).getObject();
-                        //If that player has no cards on the board
+                    //Prompt that player for debt collection
+                    Player target = (Player) OKPair.findKey(players, pchoice);
+                    //Charge the player
+                    ArrayList<Card> cards = target.chargeMoney(5, u);
+                    //Add the cards to the player of debt collector
+                    for (int i = 0; i < cards.size(); i++) {
+                        //If it's a money card
+                        if (cards.get(i).isBanked()) {
+                            //Add it to the player's bank
+                            g.getPlayers().get(playernum).addToBank(cards.get(i));
+                        } else {
+                            //Add it to their board
+                            g.getPlayers().get(playernum).addToBoard(cards.get(i));
+                        }
+                    }
+                    //Break out of the loop
+                    break;
                 }
 
             } catch (NumberFormatException e) {

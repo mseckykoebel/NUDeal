@@ -7,6 +7,7 @@ public abstract class Card
     public String name;//"Boardwalk"
     public int value;//"4"
     public boolean bankable;//false
+    public boolean banked;
 
     public Card()
     {
@@ -15,6 +16,7 @@ public abstract class Card
     public String getName(){return name;}
     public int getValue(){return value;}
     public boolean isBankable() { return bankable; }
+    public boolean isBanked(){return banked;}
 
     //Should return "success" if play was successful, error message otherwise
     public CardResponse playCard(GameState g, UserInterface u, int playernum)

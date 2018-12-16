@@ -26,14 +26,21 @@ public class Player
     {
         return hand.remove(n);
     }
+    public void removeFromHand(Card c)
+    {
+        hand.remove(c);
+    }
     public Card getFromHand(int n){return hand.get(n);}
 
     public void addToBank(Card c){bank.add(c);}
     public Card removeFromBank(int n){return bank.remove(n);}
+    public void removeFromBank(Card c) { bank.remove(c); }
     public Card getFromBank(int n){return bank.get(n);}
+
 
     public void addToBoard(Card c){board.add(c);}
     public Card removeFromBoard(int n){return board.remove(n);}
+    public void removeFromBoard(Card c) { board.remove(c); }
     public Card getFromBoard(int n){return board.get(n);}
 
     public int getHandSize(){return hand.size();}
@@ -49,7 +56,10 @@ public class Player
     {
         hand.clear();
         bank.clear();
+        board.clear();
     }
+
+
 
     public String getName(){return name;}
 
@@ -152,13 +162,15 @@ public class Player
                 ArrayList<Card> bankCards = new ArrayList<Card>();
 
                 for (int j = 0; j < cardChoices.length; j++) {
-                    //If the card is on the board
-                    if (cardChoices[j] < this.getBoardSize()) {
-                        //Add that card to the board cards list
-                        boardCards.add(this.getFromBoard(cardChoices[j]));
-                    } else {
-                        //Add that card to the bank cards list
-                        bankCards.add(this.getFromBank(cardChoices[j] - this.getBoardSize()));
+                    //Look up the card in the list
+                    Card cardChoice = (Card)OKPair.findKey(cards, cardChoices[j]);
+                    //If it's money
+                    if(cardChoice.getClass() == MoneyCard.class)
+                    {
+                        bankCards.add(cardChoice);
+                    }else{
+                        //Must be a board card
+                        boardCards.add(cardChoice);
                     }
                 }
 
@@ -176,7 +188,15 @@ public class Player
                 if (value >= 2) {
                     u.displayMessage("Payment successful");
                     //Take cards from this player
-                    //TODO
+                    for(int i = 0; i < bankCards.size(); i++)
+                    {
+                        removeFromBank(bankCards.get(i));
+                    }
+                    for(int i = 0; i < boardCards.size(); i++)
+                    {
+                        removeFromBoard(boardCards.get(i));
+                    }
+
                     //Return them
                     money.addAll(boardCards);
                     money.addAll(bankCards);
