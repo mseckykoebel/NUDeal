@@ -60,7 +60,7 @@ public class NUDeal {
             while (plays < 3) {
                 //Display cards to player
                 u.displayMessage("Please select a card to play or say 'end turn' ");
-                String choice = u.getInput(getPlayerCardString(g.whoseTurn()));
+                String choice = u.getInput(g.getPlayers().get(g.whoseTurn()).getAllCardString());
 
                 //If they want to end their turn
                 if (choice == "end turn") {
@@ -120,27 +120,6 @@ public class NUDeal {
         return false;
     }
 
-    //Returns the card string of player p
-    private String getPlayerCardString(int p)
-    {
-        String cards = "Hand:\n";
-        //Generate the hand string
-        for(int i = 0; i < g.getPlayers().get(p).getHandSize(); i++)
-        {
-            Card currentCard = g.getPlayers().get(p).getCard(i);
-            String thisCard = Integer.toString(i) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
-            cards += thisCard + "\n";
-        }
 
-        //Generate the bank string
-        cards += "Bank:\n";
-        for(int i = 0; i < g.getPlayers().get(p).getBankSize(); i++)
-        {
-            Card currentCard = g.getPlayers().get(p).getCard(i);
-            String thisCard = Integer.toString(i) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
-            cards += thisCard + "\n";
-        }
-        return cards;
-    }
 
 }

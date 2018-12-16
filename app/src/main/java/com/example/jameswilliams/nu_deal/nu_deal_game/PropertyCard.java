@@ -33,4 +33,17 @@ public class PropertyCard extends Card
         this.value = v;
         this.bankable = true;
     }
+
+    public CardResponse playCard(GameState g, UserInterface u, int playernum)
+    {
+        CardResponse response = new CardResponse(true, "success");
+
+        //Remove myself from the player's hand
+        this.removeSelfFromPlayerHand(g, playernum);
+
+        //Just add this card to the player's board
+        g.getPlayers().get(playernum).addToBoard(this);
+
+        return response;
+    }
 }
