@@ -6,13 +6,15 @@ import java.util.Collections;
 
 public class GameState
 {
+    // Defining the players, the cards, the drawPile and the discardPile as arrays
     private ArrayList<Player> players;
     private ArrayList<Card> allCards;
     private ArrayList<Card> drawPile;
     private ArrayList<Card> discardPile;
     private boolean direction; //True is low to high, false is high to low
-    private int whose_turn;
+    private int whose_turn; // ?????
 
+    // Defining primary global variables, unchanged
     private final int num1Mil = 6;
     private final int num2Mil = 5;
     private final int num3Mil = 3;
@@ -34,11 +36,13 @@ public class GameState
     
     public GameState()
     {
+        // init
         allCards = new ArrayList<Card>();
         drawPile = new ArrayList<Card>();
         discardPile = new ArrayList<Card>();
         players = new ArrayList<Player>();
         direction = false;
+
         //Player 0 will start
         whose_turn = 0;
 
@@ -50,7 +54,7 @@ public class GameState
         players.add(p);
     }
 
-    //Retuns true if game was successfully initialized, false otherwise
+    //Returns true if game was successfully initialized, false otherwise
     //This will also reset the game state
     public boolean initGame()
     {
@@ -206,6 +210,7 @@ public class GameState
         drawPile.clear();
         discardPile.clear();
 
+        // Calls our non-returnable action functions
         addMoneyCards();
         addPropertyCards();
         addActionCards();
@@ -251,6 +256,8 @@ public class GameState
 
     }
 
+
+// Defining all of the property cards, which are initialized in the latter logic
     void addPropertyCards()
     {
         //Blue Properties
@@ -330,6 +337,8 @@ public class GameState
         allCards.add(new PropertyCard("Hotel",4));
         allCards.add(new PropertyCard("Hotel",4));
         allCards.add(new PropertyCard("Hotel",4));
+        allCards.add(new PropertyCard("Hotel",4));
+
 
     }
 
@@ -364,7 +373,7 @@ public class GameState
             allCards.add(new RentCard("SkyBlue", "SaddleBrown"));
             //Orange DarkOrchid Rents
             allCards.add(new RentCard("Orange", "DarkOrchid"));
-            //Railroad Utility Rents
+            //Railroad/Utility Rents
             allCards.add(new RentCard("Railroad", "Utility"));
         }
 
@@ -398,7 +407,7 @@ public class GameState
             allCards.add(new PassGo());
         }
 
-        //Three Just Say Nos
+        //Three Just Say No's
         for(int i = 0; i < numJustSayNos; i++)
         {
             allCards.add(new JustSayNo());
