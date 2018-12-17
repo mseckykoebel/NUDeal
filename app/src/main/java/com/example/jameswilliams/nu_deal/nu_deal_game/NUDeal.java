@@ -12,9 +12,9 @@ public class NUDeal {
     GameState g;
     UserInterface u;
 
-    public NUDeal() {
+    public NUDeal(UserInterface us) {
         g = new GameState();
-        u = new UserInterface();
+        u = us;
     }
 
     public void runGame() {

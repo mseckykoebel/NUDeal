@@ -29,6 +29,7 @@ public class Birthday extends Card {
 
         //Remove the birthday card from the player's hand
         g.getPlayers().get(playernum).removeFromHand(this);
+        g.addToDiscardPile(this);
 
         //Add the cards to the player's bank or board
         //Add the cards to the player of debt collector

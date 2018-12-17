@@ -102,6 +102,8 @@ public class GameState
         return whose_turn;
     }
 
+    public void addToDiscardPile(Card c){discardPile.add(c);}
+
     public void nextTurn()
     {
         if(whose_turn == players.size() - 1)
@@ -109,6 +111,14 @@ public class GameState
             whose_turn = 0;
         }else {
             whose_turn++;
+        }
+
+        //If draw pile is smaller than 10
+        if(drawPile.size() < 10)
+        {
+            Collections.shuffle(discardPile);
+            drawPile.addAll(discardPile);
+            discardPile.clear();
         }
     }
 

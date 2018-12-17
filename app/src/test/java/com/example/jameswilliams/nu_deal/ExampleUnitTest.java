@@ -98,16 +98,5 @@ public class ExampleUnitTest {
         }
     }
 
-    @Test
-    public void basic_game_test()
-    {
-        NUDeal game = new NUDeal();
-        game.runGame();
-    }
 
-    @Test
-    public void window_test()
-    {
-
-    }
 }
