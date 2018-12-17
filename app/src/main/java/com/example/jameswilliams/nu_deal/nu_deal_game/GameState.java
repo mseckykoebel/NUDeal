@@ -1,6 +1,7 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
 import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.*;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -158,19 +159,23 @@ public class GameState
         return drawPile.size();
     }
 
-    //Shuffles the discard pile and adds it to the end of the deck
-    private void shuffleDiscard()
-    {
-        Collections.shuffle(discardPile);
-        for(int i = 0; i < discardPile.size(); i++)
-        {
-            drawPile.add(discardPile.remove(0));
-        }
-    }
-
     public ArrayList<Player> getPlayers()
     {
         return players;
+    }
+
+    //Returns list of players excluding pnum
+    public ArrayList<Player> getPlayersExcept(int pnum)
+    {
+        ArrayList<Player> ret = new ArrayList<Player>();
+        for(int i = 0; i < players.size(); i++)
+        {
+            if(i != pnum)
+            {
+                ret.add(players.get(i));
+            }
+        }
+        return ret;
     }
 
     public CardResponse playCard(int p, int c, UserInterface u)

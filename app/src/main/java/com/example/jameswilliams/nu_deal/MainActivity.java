@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private static ArrayList<String> lines;
     private static final int MAX_LINES = 25;
     private static TextView tv;
+    private static String response;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         tv = (TextView) findViewById(R.id.term_window);
         lines = new ArrayList<String>();
+        response = "";
     }
 
 
@@ -30,8 +32,17 @@ public class MainActivity extends AppCompatActivity {
     public void sendCommand(View view)
     {
         EditText editText = (EditText) findViewById(R.id.command_window);
-        String message = editText.getText().toString();
-        addLine(message);
+        response = editText.getText().toString();
+    }
+
+    public static String getResponse()
+    {
+        //Wait for the response to come in
+        while(response == "");
+        //Grab the response and reset the string
+        String ret = response;
+        response = "";
+        return ret;
     }
 
     public static void redrawTerminal()
