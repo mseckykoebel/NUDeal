@@ -23,11 +23,11 @@ public class NUDeal {
         //Display the welcome message
         u.displayMessage("Welcome to NU Deal!");
 
-        int numPlayers = Integer.parseInt(u.getInput("How many players would you like to add?"));
+        int numPlayers = u.getInt(null,"How many players will there be?");
 
         //For each player, get their name
         for (int i = 0; i < numPlayers; i++) {
-            String playerName = u.getInput("What will the name of player " + i + 1 + "be?");
+            String playerName = u.getLine(null, "What will the name of player " + i + 1 + "be?");
             g.addPlayer(new Player(playerName));
         }
 
@@ -49,46 +49,29 @@ public class NUDeal {
     private boolean mainGameLoop() {
         while (true) {
 
+            //Get the current player
+            Player currentPlayer = g.getPlayers().get(g.whoseTurn());
+
             //Say who'se turn it is
-            u.displayMessage(g.getPlayers().get(g.whoseTurn()).getName()+"'s turn");
+            u.displayMessage(currentPlayer.getName()+"'s turn");
 
             //Deal the player two cards
-            g.dealPlayer(g.whoseTurn(), 2);
+            g.dealPlayer(currentPlayer, 2);
 
             //Play up to 3 cards
             int plays = 0;
             while (plays < 3) {
                 //Display cards to player
                 u.displayMessage("Please select a card to play or say 'end turn' ");
-                String choice = u.getInput(g.getPlayers().get(g.whoseTurn()).getAllCardString());
+                Card choice = u.promptCardSelection(currentPlayer, currentPlayer.getHand()).get(0);
 
                 //If they want to end their turn
-                if (choice == "end turn") {
+                if (choice == null) {
                     break;
                 } else {
-                    //Try to get a number from the strng
-                    try {
-                        int cardChoice = Integer.parseInt(choice);
-                        //If the card choice is out of the range of their hand
-                        if (cardChoice >= g.getPlayers().get(g.whoseTurn()).getHandSize() - 1) {
-                            u.displayMessage("Invalid card choice, out of range of hand!");
-                            continue;
-                        }
-                        //Play the card
-                        CardResponse response = g.playCard(g.whoseTurn(), cardChoice, u);
-                        //If the card was played successfully
-                        if (response.success) {
-                            u.displayMessage("Card played!");
-                            plays++;
-                            continue;
-                        } else {
-                            u.displayMessage("Unable to play card: " + response.message);
-                            continue;
-                        }
-                    } catch (NumberFormatException e) {
-                        u.displayMessage("Invalid number format, try '0'");
-                        continue;
-                    }
+                    //Play the card
+
+
                 }
             }
 
@@ -111,7 +94,7 @@ public class NUDeal {
 
         //If we're here, someone has won the game
         u.displayMessage(g.winDetected().getName() + " has won the game!");
-        String choice = u.getInput("Play again? yes or no");
+        String choice = u.getLine(null, "Play again? yes or no");
 
         if(choice == "yes")
         {

@@ -13,9 +13,9 @@ public class UserInterface {
         in = new Scanner(System.in);
     }
 
-    public String getInput(String message) {
+    public String getLine(Player p, String message) {
         System.out.println(message);
-        return in.nextLine();
+        return MainActivity.getResponse();
     }
 
     public void displayMessage(String message) {
@@ -25,6 +25,22 @@ public class UserInterface {
     public void displayMessageToPlayer(Player p, String message)
     {
         MainActivity.addLine(message);
+    }
+
+    //Gets an integer from player p
+    public int getInt(Player p, String message)
+    {
+        MainActivity.addLine(message);
+        while(true)
+        {
+            try {
+                String respose = MainActivity.getResponse();
+                int ret = Integer.parseInt(respose);
+                return ret;
+            }catch(NumberFormatException e) {
+                displayMessage("Invalid number, try again");
+            }
+        }
     }
 
     public int[] stringToIntArray(String s) {

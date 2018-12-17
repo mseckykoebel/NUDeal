@@ -146,11 +146,11 @@ public class GameState
     }
 
     //Deals player p n cards
-    public void dealPlayer(int p, int n)
+    public void dealPlayer(Player p, int n)
     {
         for(int i = 0; i < n; i++)
         {
-            players.get(p).addToHand(drawPile.remove(0));
+            p.addToHand(drawPile.remove(0));
         }
     }
 

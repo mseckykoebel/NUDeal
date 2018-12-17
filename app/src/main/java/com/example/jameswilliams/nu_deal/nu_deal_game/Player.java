@@ -32,6 +32,10 @@ public class Player {
         return hand.get(n);
     }
 
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
     public void addToBank(Card c) {
         bank.add(c);
     }
@@ -120,19 +124,12 @@ public class Player {
         return cards + "====================\n";
     }
 
-    public ArrayList<OKPair> getPayableCardOKList() {
-        ArrayList<OKPair> cards = new ArrayList<OKPair>();
 
-        //Generate the board
-        for (int i = 0; i < board.size(); i++) {
-            cards.add(new OKPair(board.get(i), i));
-        }
-
-        //Generate the bank
-        for (int i = 0; i < bank.size(); i++) {
-            cards.add(new OKPair(bank.get(i), i + board.size()));
-        }
-        return cards;
+    public ArrayList<Card> getPayableCardList() {
+        ArrayList<Card> c = new ArrayList<Card>();
+        c.addAll(bank);
+        c.addAll(board);
+        return c;
     }
 
     //This takes the cards out of the player's board and bank
@@ -164,64 +161,57 @@ public class Player {
         }
 
         //Get list of payable cards
-        ArrayList<OKPair> cards = this.getPayableCardOKList();
+        ArrayList<Card> cards = getPayableCardList();
         while (true) {
             //List the cards they can pay with
             u.displayMessage("You must pay " + ammount + " million\nHow would you like to pay?");
             u.displayMessage("To select multiple cards, say: 1 2 3....");
 
-            String input = u.getInput(OKPair.OKListToString(cards, "Payable cards:"));
 
-            //Try converting the input to a number
-            try {
-                int cardChoices[] = u.stringToIntArray(input);
-                //Get the cards
-                ArrayList<Card> boardCards = new ArrayList<Card>();
-                ArrayList<Card> bankCards = new ArrayList<Card>();
+            ArrayList<Card> choices = u.promptCardSelection(this, cards);
+            //Get the cards
+            ArrayList<Card> boardCards = new ArrayList<Card>();
+            ArrayList<Card> bankCards = new ArrayList<Card>();
 
-                for (int j = 0; j < cardChoices.length; j++) {
-                    //Look up the card in the list
-                    Card cardChoice = (Card) OKPair.findKey(cards, cardChoices[j]);
-                    //If it's money
-                    if (cardChoice.getClass() == MoneyCard.class) {
-                        bankCards.add(cardChoice);
-                    } else {
-                        //Must be a board card
-                        boardCards.add(cardChoice);
-                    }
-                }
-
-                //Make sure the value of the cards adds up
-                int value = 0;
-                for (int j = 0; j < bankCards.size(); j++) {
-                    value += bankCards.get(j).getValue();
-                }
-
-                for (int j = 0; j < boardCards.size(); j++) {
-                    value += boardCards.get(j).getValue();
-                }
-
-                //If it was enough
-                if (value >= 2) {
-                    u.displayMessage("Payment successful");
-                    //Take cards from this player
-                    for (int i = 0; i < bankCards.size(); i++) {
-                        removeFromBank(bankCards.get(i));
-                    }
-                    for (int i = 0; i < boardCards.size(); i++) {
-                        removeFromBoard(boardCards.get(i));
-                    }
-
-                    //Return them
-                    money.addAll(boardCards);
-                    money.addAll(bankCards);
-                    return money;
+            for (int j = 0; j < choices.size(); j++) {
+                //Look up the card in the list
+                Card cardChoice = choices.get(j);
+                //If it's money
+                if (cardChoice.getClass() == MoneyCard.class) {
+                    bankCards.add(cardChoice);
                 } else {
-                    u.displayMessage("Value of cards is insufficient: " + value + " million, try again.");
-                    continue;
+                    //Must be a board card
+                    boardCards.add(cardChoice);
                 }
-            } catch (NumberFormatException e) {
-                u.displayMessage("Invalid number format, try again.");
+            }
+
+            //Make sure the value of the cards adds up
+            int value = 0;
+            for (int j = 0; j < bankCards.size(); j++) {
+                value += bankCards.get(j).getValue();
+            }
+
+            for (int j = 0; j < boardCards.size(); j++) {
+                value += boardCards.get(j).getValue();
+            }
+
+            //If it was enough
+            if (value >= 2) {
+                u.displayMessage("Payment successful");
+                //Take cards from this player
+                for (int i = 0; i < bankCards.size(); i++) {
+                    removeFromBank(bankCards.get(i));
+                }
+                for (int i = 0; i < boardCards.size(); i++) {
+                    removeFromBoard(boardCards.get(i));
+                }
+
+                //Return them
+                money.addAll(boardCards);
+                money.addAll(bankCards);
+                return money;
+            } else {
+                u.displayMessage("Value of cards is insufficient: " + value + " million, try again.");
                 continue;
             }
         }
