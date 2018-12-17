@@ -36,7 +36,7 @@ public class GameState
     
     public GameState()
     {
-        // Initilize
+        // init
         allCards = new ArrayList<Card>();
         drawPile = new ArrayList<Card>();
         discardPile = new ArrayList<Card>();
@@ -54,7 +54,7 @@ public class GameState
         players.add(p);
     }
 
-    //Retuns true if game was successfully initialized, false otherwise
+    //Returns true if game was successfully initialized, false otherwise
     //This will also reset the game state
     public boolean initGame()
     {
@@ -257,7 +257,7 @@ public class GameState
     }
 
 
-// Defining all of the property cards, which are initilized in the latter logic
+// Defining all of the property cards, which are initialized in the latter logic
     void addPropertyCards()
     {
         //Blue Properties
