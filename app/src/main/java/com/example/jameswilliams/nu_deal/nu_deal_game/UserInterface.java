@@ -1,5 +1,7 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
 
+import com.example.jameswilliams.nu_deal.MainActivity;
+
 import java.util.Scanner;
 
 public class UserInterface {
@@ -16,7 +18,9 @@ public class UserInterface {
     }
 
     public void displayMessage(String message) {
-        System.out.println(message);
+        MainActivity.addLine(message);
+        MainActivity.redrawTerminal();
+
     }
 
     public int[] stringToIntArray(String s) {
