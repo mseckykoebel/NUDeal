@@ -3,4 +3,5 @@
     <string name="send_command">Send a command</string>
     <string name="button_name">Send</string>
     <string name="term_window">Terminal Window</string>
+    <string name="command_hint">bank 1</string>
 </resources>
