@@ -3,6 +3,7 @@ package com.example.jameswilliams.nu_deal.nu_deal_game;
 import java.util.ArrayList;
 
 public class Player {
+
     private ArrayList<Card> hand;
     private ArrayList<Card> bank;
     private ArrayList<Card> board;

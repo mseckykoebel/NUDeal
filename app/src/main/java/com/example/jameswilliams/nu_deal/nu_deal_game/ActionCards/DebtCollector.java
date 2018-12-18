@@ -6,6 +6,8 @@ import java.util.ArrayList;
 
 
 public class DebtCollector extends Card {
+
+    // object constructor
     public DebtCollector() {
         this.name = "DebtCollector";
         this.value = 3;
@@ -23,8 +25,10 @@ public class DebtCollector extends Card {
 
         //Prompt that player for debt collection
         u.displayMessageToPlayer(g.getPlayers().get(playernum), "You have been debt collected!");
+
         //Charge the player
         ArrayList<Card> cards = target.chargeMoney(5, u);
+
         //Add the cards to the player of debt collector
         g.getPlayers().get(playernum).giveCards(cards);
 
