@@ -4,6 +4,7 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 
 public class PassGo extends Card
 {
+    // object constructor
     public PassGo()
     {
         this.name = "PassGo";

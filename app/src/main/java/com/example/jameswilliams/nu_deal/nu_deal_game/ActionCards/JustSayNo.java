@@ -4,8 +4,12 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 
 public class JustSayNo extends Card
 {
+    // object constructor
     public JustSayNo()
     {
-        //TODO
+        this.name = "JustSayNo";
+        this.value = 3;
+        this.bankable = true;
+        this.banked = false;
     }
 }

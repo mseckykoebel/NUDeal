@@ -103,6 +103,4 @@ public class NUDeal {
         return false;
     }
 
-
-
 }

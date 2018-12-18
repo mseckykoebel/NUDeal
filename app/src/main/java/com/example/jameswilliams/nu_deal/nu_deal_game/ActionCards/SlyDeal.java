@@ -4,6 +4,7 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 
 public class SlyDeal extends Card
 {
+    // object constructor
     public SlyDeal()
     {
         //TODO

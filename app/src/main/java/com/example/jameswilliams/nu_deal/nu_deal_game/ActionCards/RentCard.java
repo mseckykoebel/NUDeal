@@ -7,6 +7,7 @@ public class RentCard extends Card
     private String color1;
     private String color2;
 
+    // object constructor
     public RentCard(String c1, String c2)
     {
         color1 = c1;

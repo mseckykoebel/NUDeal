@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 public class Birthday extends Card {
 
+    // object constructor
     public Birthday() {
         this.name = "Birthday";
         this.bankable = true;
