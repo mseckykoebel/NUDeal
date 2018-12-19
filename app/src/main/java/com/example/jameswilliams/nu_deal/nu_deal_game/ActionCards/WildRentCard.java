@@ -24,20 +24,35 @@ public class WildRentCard extends Card
     // access the logic there
     public CardResponse playCard(GameState g, UserInterface u, int playernum ) {
 
-        // The card has been played
-        CardResponse response = new CardResponse(true, "Card has successfully been played!");
+        CardResponse response;
+        //Get the player playing the card
+        Player p = g.getPlayers().get(playernum);
+
+        //If the player has no board cards
+        if(p.getBoardSize() == 0)
+        {
+            //The player cannot play this card
+            response = new CardResponse(false, "Cannot play this card, no cards on board");
+            return response;
+        }
+
+        // The card can be played
+        response = new CardResponse(true, "Card has successfully been played!");
+
+        //Get the color the player would like to charge rent on
+        String color = u.promptColorSelection(p);
 
         // Ge the input from the user
         u.displayMessage("To whom are you charging this rent?");
-        Player target = u.promptPlayerSelection(g.getPlayers().get(playernum), g.getPlayersExcept(playernum));
+        Player target = u.promptPlayerSelection(p, g.getPlayersExcept(playernum));
 
         // From the amounts that can be charged, choose the amount you want to charge rent
         // Basically the player will be prompted with money amounts, and they will choose the amount
         // they want to charge
-        u.displayMessage("Slect the amount you want to charge...");
+        u.displayMessage("Select the amount you want to charge...");
 
         // Alert the player that they have been charged rent
-        u.displayMessageToPlayer(g.getPlayers().get(playernum), "You have been charged rent!");
+        u.displayMessageToPlayer(target, "You have been charged rent!");
 
         // Charge the targeted player, placeholder
         ArrayList<Card> cards = target.chargeMoney(2, u);

@@ -22,48 +22,30 @@ public class Player {
     /////////////////
 
     //Adds a card to the player's hand
-    public void addToHand(Card c) {
-        hand.add(c);
-    }
+    public void addToHand(Card c) { hand.add(c); }
     //Removes a card from the player's hand at index n and returns it
-    public Card removeFromHand(int n) {
-        return hand.remove(n);
-    }
+    public Card removeFromHand(int n) { return hand.remove(n); }
     //Removes a card from the player's hand by looking up the Card object
-    public void removeFromHand(Card c) {
-        hand.remove(c);
-    }
+    public void removeFromHand(Card c) { hand.remove(c); }
     //Gets a card from the player's hand at index n
-    public Card getFromHand(int n) {
-        return hand.get(n);
-    }
+    public Card getFromHand(int n) { return hand.get(n); }
     //Returns the entire hand of the player
     public ArrayList<Card> getHand() { return hand; }
     //Gets the size of the player's hand
-    public int getHandSize() {
-        return hand.size();
-    }
+    public int getHandSize() { return hand.size(); }
 
     /////////////////
     //Bank Routines//
     /////////////////
 
     //Adds a card to the player's bank
-    public void addToBank(Card c) {
-        bank.add(c);
-    }
+    public void addToBank(Card c) { bank.add(c); }
     //Removes and returns a card from the player's bank at index n
-    public Card removeFromBank(int n) {
-        return bank.remove(n);
-    }
+    public Card removeFromBank(int n) { return bank.remove(n); }
     //Removes a card from the player's bank by looking up the Card object
-    public void removeFromBank(Card c) {
-        bank.remove(c);
-    }
+    public void removeFromBank(Card c) { bank.remove(c); }
     //Gets a card from the player's bank at index n
-    public Card getFromBank(int n) {
-        return bank.get(n);
-    }
+    public Card getFromBank(int n) { return bank.get(n); }
     //Gets the size of the player's bank
     public int getBankSize() { return bank.size(); }
 
@@ -72,23 +54,15 @@ public class Player {
     //////////////////
 
     //Adds a card to the player's board
-    public void addToBoard(Card c) {
-        board.add(c);
-    }
+    public void addToBoard(Card c) { board.add(c); }
     //Removes a card from the player's board at index n
-    public Card removeFromBoard(int n) {
-        return board.remove(n);
-    }
+    public Card removeFromBoard(int n) { return board.remove(n); }
     //Removes a card from the player's board by looking up the object
-    public void removeFromBoard(Card c) {
-        board.remove(c);
-    }
+    public void removeFromBoard(Card c) { board.remove(c); }
     //Gets a card from the player's board at position n
     public Card getFromBoard(int n) { return board.get(n); }
     //Gets the player's board size
-    public int getBoardSize() {
-        return board.size();
-    }
+    public int getBoardSize() { return board.size(); }
 
     //Removes all cards from the player
     public void reset() {
@@ -98,9 +72,7 @@ public class Player {
     }
 
     //Gets the name of the player
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
 
     //Gets the list of cards the player can use to pay with
     public ArrayList<Card> getPayableCardList() {
@@ -210,5 +182,14 @@ public class Player {
                 this.addToBoard(cards.get(i));
             }
         }
+    }
+
+    //Calculates the rent for a given color
+    public int calculateRent(String color)
+    {
+        int rent = 0;
+        //TODO
+
+        return rent;
     }
 }

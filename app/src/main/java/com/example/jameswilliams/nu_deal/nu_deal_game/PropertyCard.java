@@ -2,8 +2,8 @@ package com.example.jameswilliams.nu_deal.nu_deal_game;
 
 public class PropertyCard extends Card
 {
-    public String color1;
-    public String color2;
+    private String color1;
+    private String color2;
 
     public PropertyCard(String n, String c1, int v)
     {
@@ -26,6 +26,9 @@ public class PropertyCard extends Card
         this.banked = true;
 
     }
+
+    public String getColor1(){return color1;}
+    public String getColor2(){return color2;}
 
     // Houses and Hotels that Can be banked, and qualify as property cards
     // More logic dealing with these will be done later
