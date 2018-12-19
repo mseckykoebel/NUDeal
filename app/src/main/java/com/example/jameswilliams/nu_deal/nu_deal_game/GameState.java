@@ -178,35 +178,6 @@ public class GameState
         return ret;
     }
 
-    public CardResponse playCard(int p, int c, UserInterface u)
-    {
-        CardResponse response = players.get(p).getCard(c).playCard(this, u, p);
-        //If the card was played successfully
-        if(response.success)
-        {
-            //Remove it from the players hand
-            players.get(p).removeFromHand(c);
-        }
-        //Otherwise just return the response message
-        return response;
-    }
-
-    //p is the player to exclude
-    public ArrayList<OKPair> getPlayerPairs(int p)
-    {
-        int plays = 0;
-        ArrayList<OKPair> pls = new ArrayList<OKPair>();
-        for(int i = 0; i < players.size(); i++)
-        {
-            //if we're not on the excluded player
-            if(i != p)
-            {
-                pls.add(new OKPair(players.get(i), plays));
-                plays++;
-            }
-        }
-        return pls;
-    }
 
     //Initializes the allCards array
     public void initCards()

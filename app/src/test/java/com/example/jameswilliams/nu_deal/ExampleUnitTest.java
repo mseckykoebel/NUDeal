@@ -86,16 +86,30 @@ public class ExampleUnitTest {
         //Try dealing all players two cards
         for(int i = 0; i < g.getPlayers().size(); i++)
         {
-            g.dealPlayer(i, 2);
+            g.dealPlayer(g.getPlayers().get(i), 2);
             assertEquals(7, g.getPlayers().get(i).getHandSize());
         }
 
         //Try dealing all players five cards
         for(int i = 0; i < g.getPlayers().size(); i++)
         {
-            g.dealPlayer(i, 5);
+            g.dealPlayer(g.getPlayers().get(i), 5);
             assertEquals(12, g.getPlayers().get(i).getHandSize());
         }
+    }
+
+    @Test
+    public void can_split_new_line()
+    {
+        String test = "this\nis\na\ntest";
+
+        String[] ls = test.split("\n");
+
+        assertEquals(4, ls.length);
+        assertEquals("this", ls[0]);
+        assertEquals("is", ls[1]);
+        assertEquals("a", ls[2]);
+        assertEquals("test", ls[3]);
     }
 
 

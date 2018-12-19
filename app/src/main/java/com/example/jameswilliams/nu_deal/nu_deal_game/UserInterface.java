@@ -124,7 +124,7 @@ public class UserInterface {
             }
 
             //Same thing for the second color
-            color = ((PropertyCard)p.getFromBoard(i)).getColor1();
+            color = ((PropertyCard)p.getFromBoard(i)).getColor2();
             if(!hasString(colors, color) && color != "")
             {
                 //Add it to the list
@@ -139,8 +139,25 @@ public class UserInterface {
             colorList += Integer.toString(i) + ". " + colors.get(i);
         }
 
-        //Present the player with the list
-        
+        //Selection loop
+        while(true) {
+            //Present the player with the list
+            MainActivity.addLine(colorList);
+
+            //Get the user input
+            String response = MainActivity.getResponse();
+
+            //If the choice was valid
+            if(hasString(colors, response))
+            {
+                //return the color
+                return response;
+            }
+            //Make the user select again
+
+            MainActivity.addLine("Invalid choice, try again.");
+        }
+
     }
 
     //Checks if l has string c

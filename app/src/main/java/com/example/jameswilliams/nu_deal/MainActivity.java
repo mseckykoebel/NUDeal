@@ -59,10 +59,9 @@ public class MainActivity extends AppCompatActivity {
 
     public static void addLine(String l)
     {
-        //String[] ls = l.split("\n");
+        String[] ls = l.split("\n");
 
-        //lines.addAll(Arrays.asList(ls));
-        lines.add(l);
+        lines.addAll(Arrays.asList(ls));
         while(lines.size() > MAX_LINES)
         {
             lines.remove(0);
