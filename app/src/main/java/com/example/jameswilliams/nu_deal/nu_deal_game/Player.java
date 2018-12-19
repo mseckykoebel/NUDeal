@@ -17,115 +17,92 @@ public class Player {
 
     }
 
+    /////////////////
+    //Hand Routines//
+    /////////////////
+
+    //Adds a card to the player's hand
     public void addToHand(Card c) {
         hand.add(c);
     }
-
+    //Removes a card from the player's hand at index n and returns it
     public Card removeFromHand(int n) {
         return hand.remove(n);
     }
-
+    //Removes a card from the player's hand by looking up the Card object
     public void removeFromHand(Card c) {
         hand.remove(c);
     }
-
+    //Gets a card from the player's hand at index n
     public Card getFromHand(int n) {
         return hand.get(n);
     }
-
-    public ArrayList<Card> getHand() {
-        return hand;
-    }
-
-    public void addToBank(Card c) {
-        bank.add(c);
-    }
-
-    public Card removeFromBank(int n) {
-        return bank.remove(n);
-    }
-
-    public void removeFromBank(Card c) {
-        bank.remove(c);
-    }
-
-    public Card getFromBank(int n) {
-        return bank.get(n);
-    }
-
-
-    public void addToBoard(Card c) {
-        board.add(c);
-    }
-
-    public Card removeFromBoard(int n) {
-        return board.remove(n);
-    }
-
-    public void removeFromBoard(Card c) {
-        board.remove(c);
-    }
-
-    public Card getFromBoard(int n) {
-        return board.get(n);
-    }
-
+    //Returns the entire hand of the player
+    public ArrayList<Card> getHand() { return hand; }
+    //Gets the size of the player's hand
     public int getHandSize() {
         return hand.size();
     }
 
-    public int getBankSize() {
-        return bank.size();
-    }
+    /////////////////
+    //Bank Routines//
+    /////////////////
 
+    //Adds a card to the player's bank
+    public void addToBank(Card c) {
+        bank.add(c);
+    }
+    //Removes and returns a card from the player's bank at index n
+    public Card removeFromBank(int n) {
+        return bank.remove(n);
+    }
+    //Removes a card from the player's bank by looking up the Card object
+    public void removeFromBank(Card c) {
+        bank.remove(c);
+    }
+    //Gets a card from the player's bank at index n
+    public Card getFromBank(int n) {
+        return bank.get(n);
+    }
+    //Gets the size of the player's bank
+    public int getBankSize() { return bank.size(); }
+
+    //////////////////
+    //Board Routines//
+    //////////////////
+
+    //Adds a card to the player's board
+    public void addToBoard(Card c) {
+        board.add(c);
+    }
+    //Removes a card from the player's board at index n
+    public Card removeFromBoard(int n) {
+        return board.remove(n);
+    }
+    //Removes a card from the player's board by looking up the object
+    public void removeFromBoard(Card c) {
+        board.remove(c);
+    }
+    //Gets a card from the player's board at position n
+    public Card getFromBoard(int n) { return board.get(n); }
+    //Gets the player's board size
     public int getBoardSize() {
         return board.size();
     }
 
-    public Card getCard(int c) {
-        return hand.get(c);
-    }
-
+    //Removes all cards from the player
     public void reset() {
         hand.clear();
         bank.clear();
         board.clear();
     }
 
-
+    //Gets the name of the player
     public String getName() {
         return name;
     }
 
-    public String getAllCardString() {
-        String cards = "\n====================\nHand:\n";
-        //Generate the hand string
-        for (int i = 0; i < hand.size(); i++) {
-            Card currentCard = hand.get(i);
-            String thisCard = Integer.toString(i) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
-            cards += thisCard + "\n";
-        }
-
-        //Generate the board string
-        cards += "Board:\n";
-
-        for (int i = 0; i < board.size(); i++) {
-            Card currentCard = board.get(i);
-            String thisCard = Integer.toString(i + hand.size()) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
-            cards += thisCard + "\n";
-        }
-
-        //Generate the bank string
-        cards += "Bank:\n";
-        for (int i = 0; i < bank.size(); i++) {
-            Card currentCard = bank.get(i);
-            String thisCard = Integer.toString(i + hand.size() + board.size()) + ". " + currentCard.getName() + ", value = " + currentCard.getValue();
-            cards += thisCard + "\n";
-        }
-        return cards + "====================\n";
-    }
-
-
+    //Gets the list of cards the player can use to pay with
     public ArrayList<Card> getPayableCardList() {
         ArrayList<Card> c = new ArrayList<Card>();
         c.addAll(bank);
@@ -133,7 +110,7 @@ public class Player {
         return c;
     }
 
-    //This takes the cards out of the player's board and bank
+    //This takes the cards out of the player's board and bank to pay the ammount
     public ArrayList<Card> chargeMoney(int ammount, UserInterface u) {
         ArrayList<Card> money = new ArrayList<Card>();
 
@@ -163,6 +140,8 @@ public class Player {
 
         //Get list of payable cards
         ArrayList<Card> cards = getPayableCardList();
+
+        //Selection loop
         while (true) {
             //List the cards they can pay with
             u.displayMessage("You must pay " + ammount + " million\nHow would you like to pay?");
