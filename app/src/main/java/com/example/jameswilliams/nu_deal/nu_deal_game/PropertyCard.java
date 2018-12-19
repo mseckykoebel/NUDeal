@@ -63,29 +63,85 @@ public class PropertyCard extends Card {
 
     //Returns the rent value for the given number of a certain property
     public static int getRentValue(String color, int number) {
-        int value = 0;
+        int rank = 0;
         switch (color) {
             case "Blue":
-
-
+                rank = 1;//3 and 8
                 break;
-
             case "Green":
-
-
+                rank = 2;//2 4 and 7
                 break;
             case "Red":
-
+                rank = 3;//2 3 and 6
                 break;
-
             case "Yellow":
-
+                rank = 4;//2 4 and 6
                 break;
-
+            case "SkyBlue":
+                rank = 5;//1 2 and 3
+                break;
+            case "SaddleBrown":
+                rank = 5;//1 and 2
+                break;
+            case "DarkOrchid"://1 2 and 4
+                rank = 6;
+                break;
+            case "Orange":
+                rank = 7;
+                break;
+            case "Railroad":
+                rank = 5;//1 2 3 and 4
+                break;
+            case "Utility":
+                rank = 5;//1 and 2
+                break;
+            default:
+                return 0;
 
         }
 
+        switch (rank) {
+            case 1:
+                if (number == 1) {
+                    return 3;
+                }
+                return 8;
+            case 2:
+                if (number == 1) {
+                    return 2;
+                } else if (number == 2) {
+                    return 4;
+                } else {
+                    return 7;
+                }
+            case 3:
+                if(number == 1)
+                {
+                    return 2;
+                }else if(number == 2){
+                    return 3;
+                }else{
+                    return 6;
+                }
+            case 4:
+                return number >= 3 ? 6 : number*3;
+            case 5:
+                if(color == "Railroad")
+                {
+                    return number >= 4 ? 4 : number;
+                }else if(color == "Utility" || color == "SaddleBrown"){
+                    return number >= 2 ? 2 : 1;
+                }else{
+                    return number >= 3 ? 3 : number;
+                }
+            case 6:
+                break;
+            case 7:
+                break;
+            default:
+                return 0;
 
-        return value;
+        }
+
     }
 }
