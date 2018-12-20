@@ -313,7 +313,6 @@ public class GameState
         allCards.add(new PropertyCard("Hotel",4));
         allCards.add(new PropertyCard("Hotel",4));
         allCards.add(new PropertyCard("Hotel",4));
-        allCards.add(new PropertyCard("Hotel",4));
 
 
     }

@@ -32,7 +32,7 @@ public class ExampleUnitTest {
 
         g.initGame();
 
-        //Make sure we have 106 cards
+        //Make sure we have 108 cards
         assertEquals(108, g.getAllCardSize());
 
         //Make sure we have 45 properties including hotels and houses
@@ -110,6 +110,60 @@ public class ExampleUnitTest {
         assertEquals("is", ls[1]);
         assertEquals("a", ls[2]);
         assertEquals("test", ls[3]);
+    }
+
+    @Test
+    public void rent_table_works()
+    {
+        //Red
+        assertEquals(2, PropertyCard.getRentValue("Red", 1));
+        assertEquals(3, PropertyCard.getRentValue("Red", 2));
+        assertEquals(6, PropertyCard.getRentValue("Red", 3));
+
+        //Yellow
+        assertEquals(2, PropertyCard.getRentValue("Yellow", 1));
+        assertEquals(4, PropertyCard.getRentValue("Yellow", 2));
+        assertEquals(6, PropertyCard.getRentValue("Yellow", 3));
+
+        //Blue
+        assertEquals(3, PropertyCard.getRentValue("Blue", 1));
+        assertEquals(8, PropertyCard.getRentValue("Blue", 2));
+
+        //Green
+        assertEquals(2, PropertyCard.getRentValue("Green", 1));
+        assertEquals(4, PropertyCard.getRentValue("Green", 2));
+        assertEquals(7, PropertyCard.getRentValue("Green", 3));
+
+        //Purple
+        assertEquals(1, PropertyCard.getRentValue("DarkOrchid", 1));
+        assertEquals(2, PropertyCard.getRentValue("DarkOrchid", 2));
+        assertEquals(4, PropertyCard.getRentValue("DarkOrchid", 3));
+
+        //Orange
+        assertEquals(1, PropertyCard.getRentValue("Orange", 1));
+        assertEquals(3, PropertyCard.getRentValue("Orange", 2));
+        assertEquals(5, PropertyCard.getRentValue("Orange", 3));
+
+        //Brown
+        assertEquals(1, PropertyCard.getRentValue("SaddleBrown", 1));
+        assertEquals(2, PropertyCard.getRentValue("SaddleBrown", 2));
+
+        //Sky Blue
+        assertEquals(1, PropertyCard.getRentValue("SkyBlue", 1));
+        assertEquals(2, PropertyCard.getRentValue("SkyBlue", 2));
+        assertEquals(3, PropertyCard.getRentValue("SkyBlue", 3));
+
+        //Railroad
+        assertEquals(1, PropertyCard.getRentValue("Railroad", 1));
+        assertEquals(2, PropertyCard.getRentValue("Railroad", 2));
+        assertEquals(3, PropertyCard.getRentValue("Railroad", 3));
+        assertEquals(4, PropertyCard.getRentValue("Railroad", 4));
+
+        //Utility
+        assertEquals(1, PropertyCard.getRentValue("Utility", 1));
+        assertEquals(2, PropertyCard.getRentValue("Utility", 2));
+
+
     }
 
 

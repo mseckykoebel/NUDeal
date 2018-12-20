@@ -63,7 +63,10 @@ public class PropertyCard extends Card {
 
     //Returns the rent value for the given number of a certain property
     public static int getRentValue(String color, int number) {
-        int rank = 0;
+        if(number == 0 || color == "") {
+            return 0;
+        }
+        int rank;
         switch (color) {
             case "Blue":
                 rank = 1;//3 and 8
@@ -86,7 +89,7 @@ public class PropertyCard extends Card {
             case "DarkOrchid"://1 2 and 4
                 rank = 6;
                 break;
-            case "Orange":
+            case "Orange"://1 3 and 5
                 rank = 7;
                 break;
             case "Railroad":
@@ -124,7 +127,7 @@ public class PropertyCard extends Card {
                     return 6;
                 }
             case 4:
-                return number >= 3 ? 6 : number*3;
+                return number >= 3 ? 6 : number*2;
             case 5:
                 if(color == "Railroad")
                 {
@@ -135,9 +138,19 @@ public class PropertyCard extends Card {
                     return number >= 3 ? 3 : number;
                 }
             case 6:
-                break;
+                if(number <= 2){
+                    return number;
+                }else{
+                    return 4;
+                }
             case 7:
-                break;
+                if(number == 1){
+                    return 1;
+                }else if(number == 2){
+                    return 3;
+                }else {
+                    return 5;
+                }
             default:
                 return 0;
 
