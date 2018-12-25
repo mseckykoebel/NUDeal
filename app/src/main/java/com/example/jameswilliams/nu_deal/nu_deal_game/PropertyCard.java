@@ -3,17 +3,19 @@ package com.example.jameswilliams.nu_deal.nu_deal_game;
 public class PropertyCard extends Card {
     private String color1;
     private String color2;
-    private boolean isPartOfFullSet;
+    private String selectedColor;//Only for wild cards
 
+    //Normal property card
     public PropertyCard(String n, String c1, int v) {
         this.name = n;
         this.color1 = c1;
+        this.selectedColor = c1;
         this.color2 = "";
         this.value = v;
         this.bankable = false;
         this.banked = true;
         this.banked = false;
-        this.isPartOfFullSet = false;
+        this.selectedColor = "";
     }
 
     // Property WildCards taking on two color values, and can be banked
@@ -25,7 +27,7 @@ public class PropertyCard extends Card {
         this.bankable = true;
         this.banked = true;
         this.banked = false;
-        this.isPartOfFullSet = false;
+        this.selectedColor = c1;//Default to c1, prompt when played
     }
 
     public String getColor1() {
@@ -36,6 +38,7 @@ public class PropertyCard extends Card {
         return color2;
     }
 
+    //House and hotel constructor
     // Houses and Hotels that Can be banked, and qualify as property cards
     // More logic dealing with these will be done later
     public PropertyCard(String n, int v) {
@@ -45,7 +48,25 @@ public class PropertyCard extends Card {
         this.color1 = "";
         this.color2 = "";
         this.banked = false;
-        this.isPartOfFullSet = false;
+        this.selectedColor = "";
+    }
+
+    public String getSelectedColor(){
+        return selectedColor;
+    }
+
+    //True if not hotel or house
+    public boolean isProperty()
+    {
+        return name != "House" && name != "Hotel";
+    }
+
+    public boolean isHouse(){
+        return name == "House";
+    }
+
+    public boolean isHotel(){
+        return name == "Hotel";
     }
 
     public CardResponse playCard(GameState g, UserInterface u, int playernum) {
@@ -53,6 +74,11 @@ public class PropertyCard extends Card {
 
         //Remove myself from the player's hand
         this.removeSelfFromPlayerHand(g, playernum);
+
+        //If the card is
+
+        //If the card is a wild card
+        if(this.color1 !=  "" && this.color2 != ""){}
 
         //Just add this card to the player's board
         g.getPlayers().get(playernum).addToBoard(this);

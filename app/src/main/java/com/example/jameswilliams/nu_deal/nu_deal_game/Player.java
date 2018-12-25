@@ -188,7 +188,14 @@ public class Player {
     public int calculateRent(String color)
     {
         int rent = 0;
-        //TODO
+
+        //Figure out how many of that card the player has
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        for(int i = 0; i < hand.size(); i++)
+        {
+
+        }
 
         return rent;
     }
