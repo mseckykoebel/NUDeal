@@ -17,7 +17,7 @@ public class Birthday extends Card {
     public CardResponse playCard(GameState g, UserInterface u, int playernum) {
         CardResponse response = new CardResponse(true, "success");
 
-        //Create a list of cards to be recieved by the birthday boy/girl
+        //Create a list of cards to be recieved by the birthday woman/man
         ArrayList<Card> cards = new ArrayList<Card>();
 
         //Get the list of players who need to pay
