@@ -7,12 +7,12 @@ public class Set {
     //This class is intended to keep track of what cards are in which property including
     //houses, hotels, wildcards, etc
 
-    private ArrayList<Card> cards;
+    private ArrayList<PropertyCard> cards;
     private boolean fullSet;
     private String color;
 
     public Set() {
-        cards = new ArrayList<Card>();
+        cards = new ArrayList<PropertyCard>();
         fullSet = false;
     }
 
@@ -22,13 +22,15 @@ public class Set {
         checkFullSet();
     }
 
+    public boolean isFullSet(){return fullSet;}
+
     //Adds the card to the set
     //Returns true on success, false if set was full
 
-    public boolean addToSet(PropertyCard c) {
+    public boolean add(PropertyCard c) {
+
         //If the set is empty
-        if(cards.size() == 0 && c.isProperty())
-        {
+        if (cards.size() == 0 && c.isProperty()) {
             //Set the color
             color = c.getSelectedColor();
             //JUst add it to the set
@@ -37,21 +39,21 @@ public class Set {
             return true;
         }
         //If the set is full
-        if(fullSet){
+        if (fullSet) {
             //and we're trying to add a property
-            if(c.isProperty()){
+            if (c.isProperty()) {
                 return false;
             }
             //If we already have a house and we're trying to add a house
-            if(c.isHouse() && hasHouse()){
+            if (c.isHouse() && hasHouse()) {
                 return false;
             }
             //If we're trying to add a hotel and we don't have a house
-            if(c.isHotel() && !hasHouse()){
+            if (c.isHotel() && !hasHouse()) {
                 return false;
             }
             //If we're trying to add a hotel and we have a hotel
-            if(c.isHotel() && hasHotel()){
+            if (c.isHotel() && hasHotel()) {
                 return false;
             }
             //Otherwise add the card
@@ -59,7 +61,7 @@ public class Set {
             return true;
         }
         //Otherwise check if the card is the right color
-        if(c.getSelectedColor() != color){
+        if (c.getSelectedColor() != color) {
             return false;
         }
 
@@ -69,6 +71,7 @@ public class Set {
         return true;
 
     }
+
     //Checks if the set has a house
     public boolean hasHouse() {
         for (int i = 0; i < cards.size(); i++) {
@@ -90,9 +93,42 @@ public class Set {
     }
 
     //Returns the size of the set
-    public int getSize(){return cards.size();}
+    public int getSize() {
+        return cards.size();
+    }
 
-    public void checkFullSet(){
-        //TODO
+    private void checkFullSet() {
+        switch (color) {
+            case "Green":
+            case "Yellow":
+            case "SkyBlue":
+            case "DarkOrchid":
+            case "Orange":
+            case "Red":
+                fullSet = getNumPropertyCards() == 3 ? true : false;
+                return;
+            case "Brown":
+            case "Blue":
+            case "Utility":
+                fullSet = getNumPropertyCards() == 2 ? true : false;
+                return;
+            case "Railroad":
+                fullSet = getNumPropertyCards() == 4 ? true : false;
+                return;
+        }
+    }
+
+    private int getNumPropertyCards() {
+        int count = 0;
+        for (int i = 0; i < cards.size(); i++) {
+            if (cards.get(i).isProperty()) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    public String getColor() {
+        return color;
     }
 }

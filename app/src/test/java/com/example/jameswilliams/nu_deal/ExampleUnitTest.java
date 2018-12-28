@@ -1,5 +1,7 @@
 package com.example.jameswilliams.nu_deal;
 
+import android.util.Property;
+
 import com.example.jameswilliams.nu_deal.nu_deal_game.*;
 
 
@@ -165,6 +167,51 @@ public class ExampleUnitTest {
 
 
     }
+
+    @Test
+    public void house_hotel_set_check_works()
+    {
+        //Create a set
+        Set set = new Set();
+
+        //Create some cards
+        PropertyCard card0 = new PropertyCard("BoardWalk", "Blue",4 );
+        PropertyCard card1 = new PropertyCard("ParkPlace", "Blue",4 );
+
+        //Make sure the set isnt full
+        assertEquals(false, set.isFullSet());
+        //Add a card
+        assertEquals(true, set.add(card0));
+        //Make sure the set isnt full
+        assertEquals(false, set.isFullSet());
+
+        //Try adding a house
+        PropertyCard house = new PropertyCard("House",3);
+        assertEquals(false, set.add(house));
+
+        //Add a card
+        assertEquals(true, set.add(card1));
+
+        //Shouldn't let us add past a full set
+        assertEquals(false, set.add(card0));
+
+        //Make sure the set is full
+        assertEquals(true, set.isFullSet());
+
+        //Try adding a hotel before a house
+        PropertyCard hotel = new  PropertyCard("Hotel",4);
+        assertEquals(false, set.add(hotel));
+
+        //Add the house and the hotel
+        assertEquals(true, set.add(house));
+        assertEquals(true, set.add(hotel));
+
+
+
+    }
+
+    @Test
+    public void set_card_add_and_remove_work(){}
 
 
 }
