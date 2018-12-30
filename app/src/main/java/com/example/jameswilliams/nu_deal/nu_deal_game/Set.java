@@ -1,5 +1,7 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
 
+import android.util.Property;
+
 import java.util.ArrayList;
 
 public class Set {
@@ -16,11 +18,6 @@ public class Set {
         fullSet = false;
     }
 
-    //Removes the card from the set
-    public void removeFromSet(Card c) {
-        cards.remove(c);
-        checkFullSet();
-    }
 
     public boolean isFullSet(){return fullSet;}
 
@@ -130,5 +127,30 @@ public class Set {
 
     public String getColor() {
         return color;
+    }
+
+    public boolean hasCard(PropertyCard c){
+        return cards.contains(c);
+    }
+
+    public boolean remove(PropertyCard c){
+        if(!hasCard(c)){
+            return false;
+        }
+
+        //If we're trying to remove a house and have a hotel
+        if(c.isHouse() && this.hasHotel()){
+            return false;
+        }
+
+        //If we're trying to remove property and have a house
+        if(!c.isHouse() && this.hasHouse()){
+            return false;
+        }
+
+        //Otherwise safe to remove
+        cards.remove(c);
+        checkFullSet();
+        return true;
     }
 }

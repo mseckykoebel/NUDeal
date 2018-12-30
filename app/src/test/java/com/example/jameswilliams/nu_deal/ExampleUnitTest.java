@@ -204,14 +204,30 @@ public class ExampleUnitTest {
 
         //Add the house and the hotel
         assertEquals(true, set.add(house));
+        assertEquals(false, set.add(house));
         assertEquals(true, set.add(hotel));
+        assertEquals(false, set.add(hotel));
 
+        //Try removing the house
+        assertEquals(false, set.remove(house));
 
+        //Try removing a property
+        assertEquals(false, set.remove(card0));
+
+        //Make sure we can remove everything in the correct order
+        assertEquals(true, set.remove(hotel));
+        assertEquals(false, set.remove(hotel));
+        assertEquals(false, set.remove(house));
+        
+        assertEquals(true, set.remove(card0));
 
     }
 
     @Test
-    public void set_card_add_and_remove_work(){}
+    public void set_card_add_and_remove_work(){
+
+
+    }
 
 
 }

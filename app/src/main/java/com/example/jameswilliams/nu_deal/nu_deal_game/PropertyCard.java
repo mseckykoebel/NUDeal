@@ -15,7 +15,6 @@ public class PropertyCard extends Card {
         this.bankable = false;
         this.banked = true;
         this.banked = false;
-        this.selectedColor = "";
     }
 
     // Property WildCards taking on two color values, and can be banked
