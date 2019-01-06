@@ -218,7 +218,7 @@ public class ExampleUnitTest {
         assertEquals(true, set.remove(hotel));
         assertEquals(false, set.remove(hotel));
         assertEquals(false, set.remove(house));
-        
+
         assertEquals(true, set.remove(card0));
 
     }

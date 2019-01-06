@@ -20,24 +20,14 @@ public abstract class Card
     public boolean isBanked(){return banked;}
 
     //Should return "success" if play was successful, error message otherwise
-    public CardResponse playCard(GameState g, UserInterface u, int playernum)
+    public CardResponse playCard(GameState g, UserInterface u, Player p)
     {
         return new CardResponse(false, "Method not implemented for this card");
     }
 
-    public void removeSelfFromPlayerHand(GameState g, int playernum)
+    public boolean removeSelfFromPlayerHand(Player p)
     {
-        //Figure out which card the player is playing
-        int cardIndex = 0;
-        for(int i = 0; i < g.getPlayers().get(playernum).getHandSize(); i++)
-        {
-            if(g.getPlayers().get(playernum).getFromHand(i).getName() == this.name)
-            {
-                cardIndex = i;
-                break;
-            }
-        }
-        g.getPlayers().get(playernum).removeFromHand(cardIndex);
+        return p.removeFromHand(this);
     }
 
 }

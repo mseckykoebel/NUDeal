@@ -2,6 +2,7 @@ package com.example.jameswilliams.nu_deal.nu_deal_game;
 
 import android.util.Property;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Set {
@@ -94,6 +95,7 @@ public class Set {
         return cards.size();
     }
 
+
     private void checkFullSet() {
         switch (color) {
             case "Green":
@@ -115,7 +117,7 @@ public class Set {
         }
     }
 
-    private int getNumPropertyCards() {
+    public int getNumPropertyCards() {
         int count = 0;
         for (int i = 0; i < cards.size(); i++) {
             if (cards.get(i).isProperty()) {
@@ -123,6 +125,16 @@ public class Set {
             }
         }
         return count;
+    }
+
+    public ArrayList<PropertyCard> getPropertyCards(){
+        ArrayList<PropertyCard> c = new ArrayList<>();
+        for(int i = 0; i < cards.size(); i++){
+            if(cards.get(i).isProperty()){
+                c.add(cards.get(i));
+            }
+        }
+        return c;
     }
 
     public String getColor() {
@@ -153,4 +165,6 @@ public class Set {
         checkFullSet();
         return true;
     }
+
+    public ArrayList<PropertyCard> getCards(){return cards;}
 }

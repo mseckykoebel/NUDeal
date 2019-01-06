@@ -14,14 +14,14 @@ public class Birthday extends Card {
         this.banked = false;
     }
 
-    public CardResponse playCard(GameState g, UserInterface u, int playernum) {
+    public CardResponse playCard(GameState g, UserInterface u, Player p) {
         CardResponse response = new CardResponse(true, "success");
 
         //Create a list of cards to be recieved by the birthday woman/man
         ArrayList<Card> cards = new ArrayList<Card>();
 
         //Get the list of players who need to pay
-        ArrayList<Player> players = g.getPlayersExcept(playernum);
+        ArrayList<Player> players = g.getPlayersExcept(p);
 
         //Loop through the players
         for(int i = 0; i < players.size(); i++)
@@ -30,11 +30,11 @@ public class Birthday extends Card {
         }
 
         //Remove the birthday card from the player's hand
-        g.getPlayers().get(playernum).removeFromHand(this);
+        p.removeFromHand(this);
         g.addToDiscardPile(this);
 
         //Add the cards to the player's bank or board
-        g.getPlayers().get(playernum).giveCards(cards);
+        p.giveCards(cards);
 
         return response;
 

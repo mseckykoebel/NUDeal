@@ -6,14 +6,15 @@ public class Player {
 
     private ArrayList<Card> hand;
     private ArrayList<Card> bank;
-    private ArrayList<Card> board;
     private String name;
+    //Effectively acts as the player's board
+    private ArrayList<Set> sets;
 
     public Player(String n) {
         name = n;
         hand = new ArrayList<Card>();
         bank = new ArrayList<Card>();
-        board = new ArrayList<Card>();
+        sets = new ArrayList<Set>();
 
     }
 
@@ -22,63 +23,120 @@ public class Player {
     /////////////////
 
     //Adds a card to the player's hand
-    public void addToHand(Card c) { hand.add(c); }
+    public void addToHand(Card c) {
+        hand.add(c);
+    }
+
     //Removes a card from the player's hand at index n and returns it
-    public Card removeFromHand(int n) { return hand.remove(n); }
+    public Card removeFromHand(int n) {
+        return hand.remove(n);
+    }
+
     //Removes a card from the player's hand by looking up the Card object
-    public void removeFromHand(Card c) { hand.remove(c); }
+    public boolean removeFromHand(Card c) {
+        return hand.remove(c);
+    }
+
     //Gets a card from the player's hand at index n
-    public Card getFromHand(int n) { return hand.get(n); }
+    public Card getFromHand(int n) {
+        return hand.get(n);
+    }
+
     //Returns the entire hand of the player
-    public ArrayList<Card> getHand() { return hand; }
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
     //Gets the size of the player's hand
-    public int getHandSize() { return hand.size(); }
+    public int getHandSize() {
+        return hand.size();
+    }
 
     /////////////////
     //Bank Routines//
     /////////////////
 
     //Adds a card to the player's bank
-    public void addToBank(Card c) { bank.add(c); }
+    public void addToBank(Card c) {
+        bank.add(c);
+    }
+
     //Removes and returns a card from the player's bank at index n
-    public Card removeFromBank(int n) { return bank.remove(n); }
+    public Card removeFromBank(int n) {
+        return bank.remove(n);
+    }
+
     //Removes a card from the player's bank by looking up the Card object
-    public void removeFromBank(Card c) { bank.remove(c); }
+    public void removeFromBank(Card c) {
+        bank.remove(c);
+    }
+
     //Gets a card from the player's bank at index n
-    public Card getFromBank(int n) { return bank.get(n); }
+    public Card getFromBank(int n) {
+        return bank.get(n);
+    }
+
     //Gets the size of the player's bank
-    public int getBankSize() { return bank.size(); }
+    public int getBankSize() {
+        return bank.size();
+    }
 
     //////////////////
     //Board Routines//
     //////////////////
 
     //Adds a card to the player's board
-    public void addToBoard(Card c) { board.add(c); }
-    //Removes a card from the player's board at index n
-    public Card removeFromBoard(int n) { return board.remove(n); }
+    public boolean addToBoard(PropertyCard c) {
+        //If we already have an set with this color
+        for (int i = 0; i < sets.size(); i++) {
+            if(sets.get(i).getColor() == c.getSelectedColor())
+            {
+                //try adding the card
+                return sets.get(i).add(c);
+            }
+        }
+        //Otherwise we need to make a new set
+        Set s = new Set();
+        s.add(c);
+        sets.add(s);
+        return true;
+    }
+
     //Removes a card from the player's board by looking up the object
-    public void removeFromBoard(Card c) { board.remove(c); }
-    //Gets a card from the player's board at position n
-    public Card getFromBoard(int n) { return board.get(n); }
+    public boolean removeFromBoard(PropertyCard c) {
+        //Find the set with that card
+        Set t = getSet(c.getSelectedColor());
+        //If we had no matching sets
+        if(t == null){
+            return false;
+        }
+        //try removing the card
+        return t.remove(c);
+    }
+
+
     //Gets the player's board size
-    public int getBoardSize() { return board.size(); }
+    public int getBoardSize() {
+        return getCardsFromSets().size();
+    }
 
     //Removes all cards from the player
     public void reset() {
         hand.clear();
         bank.clear();
-        board.clear();
+        sets.clear();
     }
 
     //Gets the name of the player
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     //Gets the list of cards the player can use to pay with
     public ArrayList<Card> getPayableCardList() {
         ArrayList<Card> c = new ArrayList<Card>();
         c.addAll(bank);
-        c.addAll(board);
+        c.addAll(getCardsFromSets());
         return c;
     }
 
@@ -87,27 +145,9 @@ public class Player {
         ArrayList<Card> money = new ArrayList<Card>();
 
         //Check if they have 0 cards
-        if (bank.size() + board.size() == 0) {
+        if (bank.size() + sets.size() == 0) {
             u.displayMessage("You have no money so you don't have to pay!");
             return money;
-        }
-
-        //Check if they have 1 card
-        if (bank.size() + board.size() == 1) {
-            //If it's in the bank
-            if (bank.size() == 1) {
-                //Remove it from the player's bank
-                money.add(this.removeFromBank(0));
-                u.displayMessage("You only have " + money.get(0).getName() + ", so you must pay with it.");
-                return money;
-            } else {
-                //Must be on the board
-                money.add(this.removeFromBoard(0));
-                u.displayMessage("You only have " + money.get(0).getName() + ", so you must pay with it.");
-                return money;
-            }
-
-
         }
 
         //Get list of payable cards
@@ -155,14 +195,32 @@ public class Player {
                     removeFromBank(bankCards.get(i));
                 }
                 for (int i = 0; i < boardCards.size(); i++) {
-                    removeFromBoard(boardCards.get(i));
+                    removeFromBoard((PropertyCard) boardCards.get(i));
                 }
 
                 //Return them
                 money.addAll(boardCards);
                 money.addAll(bankCards);
                 return money;
-            } else {
+
+            //If they used everything they had
+            } else if(boardCards.size() + bankCards.size() == getPayableCardList().size()){
+                u.displayMessageToPlayer(this, "Payment successful");
+                //Take cards from this player
+                for (int i = 0; i < bankCards.size(); i++) {
+                    removeFromBank(bankCards.get(i));
+                }
+                for (int i = 0; i < boardCards.size(); i++) {
+                    removeFromBoard((PropertyCard) boardCards.get(i));
+                }
+
+                //Return them
+                money.addAll(boardCards);
+                money.addAll(bankCards);
+                return money;
+            }
+            //Insufficient funds
+            else {
                 u.displayMessage("Value of cards is insufficient: " + value + " million, try again.");
                 continue;
             }
@@ -179,24 +237,59 @@ public class Player {
                 this.addToBank(cards.get(i));
             } else {
                 //Add it to their board
-                this.addToBoard(cards.get(i));
+                this.addToBoard((PropertyCard) cards.get(i));
             }
         }
     }
 
     //Calculates the rent for a given color
-    public int calculateRent(String color)
-    {
+    public int calculateRent(String color) {
         int rent = 0;
 
-        //Figure out how many of that card the player has
-        ArrayList<Card> cards = new ArrayList<Card>();
-
-        for(int i = 0; i < hand.size(); i++)
-        {
-
+        //Find the set of that color
+        Set s = getSet(color);
+        //Add the base price in for the color
+        rent += PropertyCard.getRentValue(color, s.getNumPropertyCards());
+        //If we have a house
+        if(s.hasHouse()){
+            rent += 3;
         }
-
+        if(s.hasHotel()){
+            rent += 4;
+        }
         return rent;
+    }
+
+    private Set getSet(String c){
+        for(int i = 0; i < sets.size(); i++){
+            if(sets.get(i).getColor() == c){
+                return sets.get(i);
+            }
+        }
+        return null;
+    }
+
+    //Returns all property cards from sets
+    public ArrayList<Card> getTradablePropertiesList(){
+        //Go through all of the sets
+        ArrayList<Card> list = new ArrayList<>();
+        for(int i = 0; i < sets.size(); i++){
+            list.addAll(sets.get(i).getPropertyCards());
+        }
+        return list;
+    }
+
+    //Returns all of the cards in our sets
+    public ArrayList<Card> getCardsFromSets(){
+        ArrayList<Card> list = new ArrayList<>();
+        for(int i = 0; i < sets.size(); i++){
+            list.addAll(sets.get(i).getCards());
+        }
+        return list;
+    }
+
+    public boolean willSayNo(UserInterface u){
+        //Todo
+        return false;
     }
 }

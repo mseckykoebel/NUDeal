@@ -165,17 +165,29 @@ public class GameState
     }
 
     //Returns list of players excluding pnum
-    public ArrayList<Player> getPlayersExcept(int pnum)
+    public ArrayList<Player> getPlayersExcept(Player p)
     {
         ArrayList<Player> ret = new ArrayList<Player>();
         for(int i = 0; i < players.size(); i++)
         {
-            if(i != pnum)
+            if(p != players.get(i))
             {
                 ret.add(players.get(i));
             }
         }
         return ret;
+    }
+
+    //Gets the takable property cards from everyone except the specified player
+    public ArrayList<Card> getTakableCards(Player p)
+    {
+        ArrayList<Card> list = new ArrayList<>();
+        for(int i = 0; i < players.size(); i++){
+            if(players.get(i) != p){
+                list.addAll(players.get(i).getTradablePropertiesList());
+            }
+        }
+        return list;
     }
 
 

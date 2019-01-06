@@ -4,6 +4,8 @@ public class PropertyCard extends Card {
     private String color1;
     private String color2;
     private String selectedColor;//Only for wild cards
+    private boolean isTwoColor;
+    private boolean isWild;
 
     //Normal property card
     public PropertyCard(String n, String c1, int v) {
@@ -15,6 +17,9 @@ public class PropertyCard extends Card {
         this.bankable = false;
         this.banked = true;
         this.banked = false;
+        isWild = (n == "WildCard");
+        isTwoColor = false;
+
     }
 
     // Property WildCards taking on two color values, and can be banked
@@ -27,6 +32,8 @@ public class PropertyCard extends Card {
         this.banked = true;
         this.banked = false;
         this.selectedColor = c1;//Default to c1, prompt when played
+        this.isTwoColor = true;
+        this.isWild = false;
     }
 
     public String getColor1() {
@@ -36,6 +43,9 @@ public class PropertyCard extends Card {
     public String getColor2() {
         return color2;
     }
+
+    public boolean isTwoColor(){return isTwoColor;}
+    public boolean isWild(){return isWild;}
 
     //House and hotel constructor
     // Houses and Hotels that Can be banked, and qualify as property cards
@@ -68,19 +78,19 @@ public class PropertyCard extends Card {
         return name == "Hotel";
     }
 
-    public CardResponse playCard(GameState g, UserInterface u, int playernum) {
+    public CardResponse playCard(GameState g, UserInterface u, Player p) {
         CardResponse response = new CardResponse(true, "success");
 
         //Remove myself from the player's hand
-        this.removeSelfFromPlayerHand(g, playernum);
+        this.removeSelfFromPlayerHand(p);
 
-        //If the card is
+        //If the card is a two color card
 
         //If the card is a wild card
         if(this.color1 !=  "" && this.color2 != ""){}
 
         //Just add this card to the player's board
-        g.getPlayers().get(playernum).addToBoard(this);
+        p.addToBoard(this);
 
         return response;
     }
