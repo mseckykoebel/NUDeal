@@ -11,15 +11,15 @@ public class MoneyCard extends Card
         this.banked = false;
     }
 
-    public CardResponse playCard(GameState g, UserInterface u, int playernum)
+    public CardResponse playCard(GameState g, UserInterface u, Player p)
     {
         CardResponse response = new CardResponse(true, "success");
 
         //Remove myself from the player's hand
-        this.removeSelfFromPlayerHand(g, playernum);
+        this.removeSelfFromPlayerHand(p);
 
         //Just add this card to the player's board
-        g.getPlayers().get(playernum).addToBoard(this);
+        p.addToBank(this);
 
         return response;
     }

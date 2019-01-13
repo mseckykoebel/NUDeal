@@ -269,12 +269,14 @@ public class Player {
         return null;
     }
 
-    //Returns all property cards from sets
+    //Returns all property cards from sets which ARE NOT FULL
     public ArrayList<Card> getTradablePropertiesList(){
         //Go through all of the sets
         ArrayList<Card> list = new ArrayList<>();
         for(int i = 0; i < sets.size(); i++){
-            list.addAll(sets.get(i).getPropertyCards());
+            if(!sets.get(i).isFullSet()) {
+                list.addAll(sets.get(i).getPropertyCards());
+            }
         }
         return list;
     }
@@ -288,8 +290,43 @@ public class Player {
         return list;
     }
 
-    public boolean willSayNo(UserInterface u){
+    //Implements a just say no battle between this player and p
+    public boolean willSayNo(GameState g, UserInterface u, Player p){
         //Todo
         return false;
+    }
+
+    //Returns a list of the property colors on the board
+    public ArrayList<String> getPropertyColors(){
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < sets.size(); i++){
+            list.add(sets.get(i).getColor());
+        }
+        return list;
+    }
+
+    public ArrayList<String> getFullSetColors(){
+        ArrayList<String> list = new ArrayList<>();
+        for(int i = 0; i < sets.size(); i++){
+            if(sets.get(i).isFullSet()) {
+                list.add(sets.get(i).getColor());
+            }
+        }
+        return list;
+    }
+
+    public Set takeFullSet(String color){
+        //Find the set
+        for(int i = 0; i < sets.size(); i++){
+            if(sets.get(i).isFullSet() && sets.get(i).getColor() == color){
+                return sets.remove(i);
+            }
+        }
+        //If we couldn't find it
+        return null;
+    }
+
+    public void giveSet(Set s){
+        sets.add(s);
     }
 }

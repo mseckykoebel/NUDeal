@@ -107,30 +107,8 @@ public class UserInterface {
         }
     }
 
-    public String promptColorSelection(Player p)
+    public String promptColorSelection(Player p, ArrayList<String> colors)
     {
-        //Get the list of colors on the board of the player
-        ArrayList<String> colors = new ArrayList<>();
-
-        for(int i = 0; i < p.getBoardSize(); i++)
-        {
-            //Get the first color
-            String color = ((PropertyCard)p.getFromBoard(i)).getColor1();
-            //If it's not already in the array
-            if(!hasString(colors, color) && color != "")
-            {
-                //Add it to the list
-                colors.add(color);
-            }
-
-            //Same thing for the second color
-            color = ((PropertyCard)p.getFromBoard(i)).getColor2();
-            if(!hasString(colors, color) && color != "")
-            {
-                //Add it to the list
-                colors.add(color);
-            }
-        }
 
         //Make the list of colors the player can choose from
         String colorList = "";

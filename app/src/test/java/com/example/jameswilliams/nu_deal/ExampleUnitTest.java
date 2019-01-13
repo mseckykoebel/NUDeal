@@ -62,7 +62,7 @@ public class ExampleUnitTest {
         assertEquals(45, propertyCards);
         assertEquals(43, actionCards);
 
-        //Make sure each player has 4 cards
+        //Make sure each player has 5 cards
         ArrayList<Player> players = g.getPlayers();
 
         for(int i = 0; i < players.size(); i++)

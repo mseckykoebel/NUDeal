@@ -4,6 +4,7 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 import com.example.jameswilliams.nu_deal.nu_deal_game.CardResponse;
 import com.example.jameswilliams.nu_deal.nu_deal_game.GameState;
 import com.example.jameswilliams.nu_deal.nu_deal_game.Player;
+import com.example.jameswilliams.nu_deal.nu_deal_game.PropertyCard;
 import com.example.jameswilliams.nu_deal.nu_deal_game.UserInterface;
 
 import java.lang.reflect.Array;
@@ -22,6 +23,12 @@ public class ForcedDeal extends Card
 
     @Override
     public CardResponse playCard(GameState g, UserInterface u, Player p) {
+
+        //If the player has no cards to trade
+        if(p.getBoardSize() == 0){
+            return new CardResponse(false, "Player has no cards to trade");
+        }
+
         //Prompt the player to select one of their cards to trade
         u.displayMessageToPlayer(p, "Select one of your cards to trade:");
         ArrayList<Card> tradable = p.getTradablePropertiesList();
@@ -36,16 +43,32 @@ public class ForcedDeal extends Card
         ArrayList<Card> toGet = u.promptCardSelection(p, target.getTradablePropertiesList());
 
         //Tell the target player what is happening
+        u.displayMessageToPlayer(target, p.getName() + " wants to take your " + toGet.get(0).getName() + " and give you " + toGive.get(0).getName());
 
-        if(p.willSayNo(u))
+        //If the target wants to play a just say no
+        if(target.willSayNo(g, u, p))
         {
             //Discard this from the player's hand
+            this.removeSelfFromPlayerHand(p);
+            g.addToDiscardPile(this);
             //return success
+            return new CardResponse(true, "card played successfully");
         }
 
         //Discard this from player's hand
-        //Get target card from player and give to this player
+        this.removeSelfFromPlayerHand(p);
+        g.addToDiscardPile(this);
 
+        //Remove the trading cards from the players hands
+        toGet.get(0).removeSelfFromPlayerHand(target);
+        toGive.get(0).removeSelfFromPlayerHand(p);
+
+        //Give the cards to the opposite players
+        target.addToBoard((PropertyCard) toGive.get(0));
+        p.addToBoard((PropertyCard) toGet.get(0));
+
+        //Return success
+        return new CardResponse(true, "card played successfully");
 
 
     }

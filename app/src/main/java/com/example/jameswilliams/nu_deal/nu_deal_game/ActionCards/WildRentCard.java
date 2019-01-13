@@ -1,6 +1,7 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards;
 
 // Import individually so I know where tf they all came from
+
 import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 import com.example.jameswilliams.nu_deal.nu_deal_game.CardResponse;
 import com.example.jameswilliams.nu_deal.nu_deal_game.GameState;
@@ -9,11 +10,9 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.UserInterface;
 
 import java.util.ArrayList;
 
-public class WildRentCard extends Card
-{
+public class WildRentCard extends Card {
     // object constructor
-    public WildRentCard()
-    {
+    public WildRentCard() {
         this.name = "WildRentCard";
         this.value = 3;
         this.bankable = true;
@@ -22,15 +21,13 @@ public class WildRentCard extends Card
 
     // gather the number of players, and pass the GameState and the UserInterface classes
     // access the logic there
-    public CardResponse playCard(GameState g, UserInterface u, int playernum ) {
+    @Override
+    public CardResponse playCard(GameState g, UserInterface u, Player p) {
 
         CardResponse response;
-        //Get the player playing the card
-        Player p = g.getPlayers().get(playernum);
 
         //If the player has no board cards
-        if(p.getBoardSize() == 0)
-        {
+        if (p.getBoardSize() == 0) {
             //The player cannot play this card
             response = new CardResponse(false, "Cannot play this card, no cards on board");
             return response;
@@ -40,28 +37,23 @@ public class WildRentCard extends Card
         response = new CardResponse(true, "Card has successfully been played!");
 
         //Get the color the player would like to charge rent on
-        String color = u.promptColorSelection(p);
+        String color = u.promptColorSelection(p, p.getPropertyColors());
 
-        // Ge the input from the user
+        //Get the target player
         u.displayMessage("To whom are you charging this rent?");
-        Player target = u.promptPlayerSelection(p, g.getPlayersExcept(playernum));
-
-        // From the amounts that can be charged, choose the amount you want to charge rent
-        // Basically the player will be prompted with money amounts, and they will choose the amount
-        // they want to charge
-        u.displayMessage("Select the amount you want to charge...");
-
-        // Alert the player that they have been charged rent
-        u.displayMessageToPlayer(target, "You have been charged rent!");
+        Player target = u.promptPlayerSelection(p, g.getPlayersExcept(p));
 
         // Charge the targeted player, placeholder
-        ArrayList<Card> cards = target.chargeMoney(2, u);
+        ArrayList<Card> cards = target.chargeMoney(p.calculateRent(color), u);
 
-        // Remove the card from the players hand and add to the discard pile
-        g.getPlayers().get(playernum).removeFromBank(this);
+        //Give the cards to the player
+        p.giveCards(cards);
+
+        //remove self from players hand and discard
+        this.removeSelfFromPlayerHand(p);
         g.addToDiscardPile(this);
 
-    return response;
-
+        //Success
+        return response;
     }
 }

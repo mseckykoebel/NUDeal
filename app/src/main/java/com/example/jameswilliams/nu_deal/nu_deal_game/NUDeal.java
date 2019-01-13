@@ -17,6 +17,11 @@ public class NUDeal {
         u = us;
     }
 
+    public NUDeal(GameState gs, UserInterface us){
+        g = gs;
+        u = us;
+    }
+
     public void runGame() {
         boolean playAgain = true;
 
@@ -50,7 +55,7 @@ public class NUDeal {
         while (true) {
 
             //Get the current player
-            Player currentPlayer = g.getPlayers().get(g.whoseTurn());
+            Player currentPlayer = g.whoseTurn();
 
             //Say who'se turn it is
             u.displayMessage(currentPlayer.getName()+"'s turn");
@@ -76,7 +81,7 @@ public class NUDeal {
             }
 
             //If the player needs to discard cards
-            if(g.getPlayers().get(g.whoseTurn()).getHandSize() > 7)
+            if(g.whoseTurn().getHandSize() > 7)
             {
                 //TODO
             }

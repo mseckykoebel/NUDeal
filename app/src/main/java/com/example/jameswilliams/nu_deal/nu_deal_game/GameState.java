@@ -13,7 +13,7 @@ public class GameState
     private ArrayList<Card> drawPile;
     private ArrayList<Card> discardPile;
     private boolean direction; //True is low to high, false is high to low
-    private int whose_turn; // ?????
+    private int whose_turn; //
 
     // Defining primary global variables, unchanged
     private final int num1Mil = 6;
@@ -98,9 +98,9 @@ public class GameState
         return allCards;
     }
 
-    public int whoseTurn()
+    public Player whoseTurn()
     {
-        return whose_turn;
+        return players.get(whose_turn);
     }
 
     public void addToDiscardPile(Card c){discardPile.add(c);}
