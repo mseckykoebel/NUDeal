@@ -22,6 +22,14 @@ public class DummyUserInterface extends UserInterface {
         nextColorSelection = new ArrayList<>();
     }
 
+    public DummyUserInterface(ArrayList<String> go, ArrayList<Integer> nc, ArrayList<Integer> np, ArrayList<String> ncs){
+        in = new Scanner(System.in);
+        gameOutput = go;
+        nextCardSelection = nc;
+        nextPlayerSelection = np;
+        nextColorSelection = ncs;
+    }
+
     public String getLine(Player p, String message) {
         System.out.println(message);
         return MainActivity.getResponse();

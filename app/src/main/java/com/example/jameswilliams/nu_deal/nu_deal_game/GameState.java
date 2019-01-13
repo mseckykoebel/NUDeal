@@ -88,6 +88,10 @@ public class GameState
         return true;
     }
 
+    //Test methods, should be disabled later
+    public void addToAllCards(Card c){allCards.add(c);}
+    public void addToDrawPile(Card c){drawPile.add(c);}
+
     public int getAllCardSize()
     {
         return allCards.size();

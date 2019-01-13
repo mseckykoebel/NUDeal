@@ -51,52 +51,9 @@ public class NUDeal {
         }
     }
 
-    private boolean mainGameLoop() {
-        while (true) {
+    public boolean mainGameLoop() {
 
-            //Get the current player
-            Player currentPlayer = g.whoseTurn();
-
-            //Say who'se turn it is
-            u.displayMessage(currentPlayer.getName()+"'s turn");
-
-            //Deal the player two cards
-            g.dealPlayer(currentPlayer, 2);
-
-            //Play up to 3 cards
-            int plays = 0;
-            while (plays < 3) {
-                //Display cards to player
-                u.displayMessage("Please select a card to play or say 'end turn' ");
-                Card choice = u.promptCardSelection(currentPlayer, currentPlayer.getHand()).get(0);
-
-                //If they want to end their turn
-                if (choice == null) {
-                    break;
-                } else {
-                    //Play the card
-
-
-                }
-            }
-
-            //If the player needs to discard cards
-            if(g.whoseTurn().getHandSize() > 7)
-            {
-                //TODO
-            }
-
-
-            //Check to see if anyone won on that turn
-            if (g.winDetected() != null) {
-                break;
-            } else {
-                //Advance the turn
-                g.nextTurn();
-            }
-
-        }
-
+        while (executeTurn());
         //If we're here, someone has won the game
         u.displayMessage(g.winDetected().getName() + " has won the game!");
         String choice = u.getLine(null, "Play again? yes or no");
@@ -106,6 +63,57 @@ public class NUDeal {
             return true;
         }
         return false;
+    }
+
+    //Returns true if a win was detected
+    public boolean executeTurn(){
+        //Get the current player
+        Player currentPlayer = g.whoseTurn();
+
+        //Say who'se turn it is
+        u.displayMessage(currentPlayer.getName()+"'s turn");
+
+        //Deal the player two cards
+        g.dealPlayer(currentPlayer, 2);
+
+        //Play up to 3 cards
+        int plays = 0;
+        while (plays < 3) {
+            //Display cards to player
+            u.displayMessage("Please select a card to play or say 'end turn' ");
+            Card choice = u.promptCardSelection(currentPlayer, currentPlayer.getHand()).get(0);
+
+            //If they want to end their turn
+            if (choice == null) {
+                break;
+            } else {
+                //Play the card
+                CardResponse rep = choice.playCard(g, u, currentPlayer);
+                if(rep.success){
+                    plays++;
+                }
+                else{
+                    u.displayMessageToPlayer(currentPlayer, "Failed to play card: " + rep.message);
+                }
+            }
+        }
+
+        //If the player needs to discard cards
+        if(g.whoseTurn().getHandSize() > 7)
+        {
+            //TODO
+        }
+
+
+        //Check to see if anyone won on that turn
+        if (g.winDetected() != null) {
+            return true;
+        } else {
+            //Advance the turn
+            g.nextTurn();
+            return false;
+        }
+
     }
 
 }
