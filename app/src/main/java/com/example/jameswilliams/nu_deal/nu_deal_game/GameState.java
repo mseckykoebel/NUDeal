@@ -91,6 +91,7 @@ public class GameState
     //Test methods, should be disabled later
     public void addToAllCards(Card c){allCards.add(c);}
     public void addToDrawPile(Card c){drawPile.add(c);}
+    public ArrayList<Card> getDiscardPile(){return discardPile;}
 
     public int getAllCardSize()
     {
