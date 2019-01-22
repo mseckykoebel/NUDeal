@@ -5,7 +5,7 @@ import com.example.jameswilliams.nu_deal.MainActivity;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UserInterface {
+public class UserInterface implements UserInt{
     Scanner in;
 
     public UserInterface() {

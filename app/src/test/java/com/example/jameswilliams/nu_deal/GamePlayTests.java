@@ -2,6 +2,7 @@ package com.example.jameswilliams.nu_deal;
 
 import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.DealBreaker;
 import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.ForcedDeal;
+import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.PassGo;
 import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.SlyDeal;
 import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
 import com.example.jameswilliams.nu_deal.nu_deal_game.DummyUserInterface;
@@ -230,6 +231,50 @@ public class GamePlayTests {
 
         //Same for player0
         assertEquals(0, player0.getBoardSize());
+
+    }
+
+
+    @Test
+    public void pass_go_test()
+    {
+        //Make a new game state
+        GameState g = new GameState();
+
+        //Make one player
+        Player player0 = new Player("James");
+
+        //Give player0 a card
+        player0.addToHand(new PassGo());
+
+        //add some cards to the game state
+        for(int i = 0; i < 20; i++){
+            Card c = new MoneyCard(1);
+            g.addToAllCards(c);
+            g.addToDrawPile(c);
+        }
+
+        ArrayList<String> gameOutput = new ArrayList<>();
+        ArrayList<Integer> cardChoices = new ArrayList<>();
+        ArrayList<Integer> playerChoices = new ArrayList<>();
+        ArrayList<String> colorChoices = new ArrayList<>();
+
+        //Add the choices
+
+        //Play the pass go
+        cardChoices.add(0);
+
+        //Prep the user interface
+        DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
+
+        //Start the game
+        NUDeal game = new NUDeal(g, u);
+
+        //Run two turns
+        game.executeTurn();
+
+        //Make sure player0 has 4 cards
+        assertEquals(4, player0.getHandSize());
 
     }
 
