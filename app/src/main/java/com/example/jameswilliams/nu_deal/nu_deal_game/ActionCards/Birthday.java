@@ -23,7 +23,7 @@ public class Birthday extends Card {
         //Get the list of players who need to pay
         ArrayList<Player> players = g.getPlayersExcept(p);
 
-        //Loop through the players
+        //Loop throughz the players
         for(int i = 0; i < players.size(); i++)
         {
             cards.addAll(players.get(i).chargeMoney(2, u));
