@@ -99,7 +99,7 @@ public class NUDeal {
         }
 
         //If the player needs to discard cards
-        if(g.whoseTurn().getHandSize() > 7)
+        if(currentPlayer.getHandSize() > 7)
         {
             //TODO
         }

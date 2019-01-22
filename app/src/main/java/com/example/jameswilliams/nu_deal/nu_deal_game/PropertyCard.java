@@ -84,10 +84,16 @@ public class PropertyCard extends Card {
         //Remove myself from the player's hand
         this.removeSelfFromPlayerHand(p);
 
-        //If the card is a two color card
 
         //If the card is a wild card
-        if(this.color1 !=  "" && this.color2 != ""){}
+        if(this.color1 !=  "" && this.color2 != ""){
+            //If it's a two color
+
+
+            //If it's a wild card
+
+            //ToDo
+        }
 
         //Just add this card to the player's board
         p.addToBoard(this);

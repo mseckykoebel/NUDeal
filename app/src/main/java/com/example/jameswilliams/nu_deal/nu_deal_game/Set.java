@@ -106,7 +106,7 @@ public class Set {
             case "Red":
                 fullSet = getNumPropertyCards() == 3 ? true : false;
                 return;
-            case "Brown":
+            case "SaddleBrown":
             case "Blue":
             case "Utility":
                 fullSet = getNumPropertyCards() == 2 ? true : false;

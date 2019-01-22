@@ -70,7 +70,14 @@ public class DummyUserInterface extends UserInterface {
 
     //Prompts Player p to select cards from the list of given cards
     public ArrayList<Card> promptCardSelection(Player p, ArrayList<Card> list) {
+
         ArrayList<Card> ret = new ArrayList<>();
+        if(nextCardSelection.get(0) >= list.size()){
+            nextCardSelection.remove(0);
+            ret.add(null);
+            return ret;
+        }
+
         ret.add(list.get(nextCardSelection.remove(0)));
         return ret;
     }

@@ -46,6 +46,10 @@ public class GamePlayTests {
         //Give player1 a deal breaker
         player1.addToHand(new DealBreaker());
 
+        //Add the players to the game
+        g.addPlayer(player0);
+        g.addPlayer(player1);
+
         //add some cards to the game state
         for(int i = 0; i < 20; i++){
             Card c = new MoneyCard(1);
@@ -75,6 +79,9 @@ public class GamePlayTests {
 
         //Select the brown color
         colorChoices.add("SaddleBrown");
+
+        //End the turn
+        cardChoices.add(5);
 
         //Prep the user interface
         DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
@@ -114,6 +121,10 @@ public class GamePlayTests {
         //Give player1 a card and a forced deal
         player1.addToHand(new PropertyCard("MediterraneanAvenue","SaddleBrown",1));
         player1.addToHand(new ForcedDeal());
+
+        //Add the players to the game
+        g.addPlayer(player0);
+        g.addPlayer(player1);
 
         //add some cards to the game state
         for(int i = 0; i < 20; i++){
@@ -183,6 +194,10 @@ public class GamePlayTests {
         //Give player1 a sly seal
         player1.addToHand(new SlyDeal());
 
+        //Add the players to the game
+        g.addPlayer(player0);
+        g.addPlayer(player1);
+
         //add some cards to the game state
         for(int i = 0; i < 20; i++){
             Card c = new MoneyCard(1);
@@ -246,6 +261,9 @@ public class GamePlayTests {
 
         //Give player0 a card
         player0.addToHand(new PassGo());
+
+        //Add the players to the game
+        g.addPlayer(player0);
 
         //add some cards to the game state
         for(int i = 0; i < 20; i++){
