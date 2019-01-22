@@ -31,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void sendCommand(View view)
     {
+        // R means resources, and we reference the command window
+        // Convert to an edit text with (EditText), as the type, EditText
         EditText editText = (EditText) findViewById(R.id.command_window);
+
+        // get the text within editText, and converts it to a string
         response = editText.getText().toString();
     }
 
@@ -45,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         return ret;
     }
 
+    // Function that prints the terminal contents onto the screen
     public static void redrawTerminal()
     {
         //make all of the lines into one massive string

@@ -1,6 +1,14 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
 
+import android.widget.Toast;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+
 import java.util.ArrayList;
+
+// All messages are generated using a 'Toast.'
 
 public class GameUserInterface implements UserInt {
     @Override
