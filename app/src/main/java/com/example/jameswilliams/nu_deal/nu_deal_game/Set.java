@@ -156,7 +156,7 @@ public class Set {
         }
 
         //If we're trying to remove property and have a house
-        if(!c.isHouse() && this.hasHouse()){
+        if(c.isProperty() && this.hasHouse()){
             return false;
         }
 
