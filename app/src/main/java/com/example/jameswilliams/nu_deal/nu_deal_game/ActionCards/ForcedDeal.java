@@ -59,9 +59,9 @@ public class ForcedDeal extends Card
         this.removeSelfFromPlayerHand(p);
         g.addToDiscardPile(this);
 
-        //Remove the trading cards from the players hands
-        toGet.get(0).removeSelfFromPlayerHand(target);
-        toGive.get(0).removeSelfFromPlayerHand(p);
+        //Remove the trading cards from the players boards
+        target.removeFromBoard((PropertyCard) toGet.get(0));
+        p.removeFromBoard((PropertyCard) toGive.get(0));
 
         //Give the cards to the opposite players
         target.addToBoard((PropertyCard) toGive.get(0));

@@ -152,11 +152,17 @@ public class GamePlayTests {
         //Play the forced deal
         cardChoices.add(0);
 
+        //Select your own property
+        cardChoices.add(0);
+
         //Select the first player
         playerChoices.add(0);
 
         //Select the brown property
         cardChoices.add(0);
+
+        //End the turn
+        cardChoices.add(5);
 
         //Prep the user interface
         DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
