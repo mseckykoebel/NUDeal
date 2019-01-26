@@ -20,7 +20,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:title="NUDeal - Login"></android.support.v7.widget.Toolbar>
+        app:title="NUDeal - Login with Google"></android.support.v7.widget.Toolbar>
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline"
