@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "761413615017",
+    "firebase_url": "https://nudeal-dev.firebaseio.com",
+    "project_id": "nudeal-dev",
+    "storage_bucket": "nudeal-dev.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:761413615017:android:f5efab640f54bce9",
+        "android_client_info": {
+          "package_name": "com.example.jameswilliams.nu_deal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "761413615017-ema17jm29lq3uuo36u30pfob7o1u5p68.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNIy6HpglpK3LybyrTpQSmhXYYqAZvAiM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
