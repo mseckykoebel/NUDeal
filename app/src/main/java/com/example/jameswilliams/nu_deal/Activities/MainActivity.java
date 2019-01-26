@@ -1,13 +1,17 @@
 package com.example.jameswilliams.nu_deal.Activities;
 
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.jameswilliams.nu_deal.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,6 +24,10 @@ public class MainActivity extends AppCompatActivity {
     private static TextView tv;
     private static String response;
 
+    // adding some logic to the account information button
+    private Button btnMyAccount;
+    private FirebaseAuth auth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,8 +35,27 @@ public class MainActivity extends AppCompatActivity {
         tv = (TextView) findViewById(R.id.term_window);
         lines = new ArrayList<String>();
         response = "";
-    }
 
+        //Get Fire base auth instance
+        auth = FirebaseAuth.getInstance();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = auth.getCurrentUser();
+
+        btnMyAccount = (Button) findViewById(R.id.myAccount);
+
+        // Listener for the "log me in" button
+        btnMyAccount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                startActivity(new Intent(MainActivity.this, UserAccount.class));
+
+                // close the activity
+                finish();
+            }
+        });
+
+    }
 
 
     public void sendCommand(View view)
