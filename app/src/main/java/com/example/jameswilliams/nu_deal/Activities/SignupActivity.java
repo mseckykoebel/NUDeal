@@ -53,6 +53,7 @@ public class SignupActivity extends AppCompatActivity {
 
                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));
 
+                // close the activity
                 finish();
             }
         });

@@ -21,7 +21,7 @@ import com.example.jameswilliams.nu_deal.R;
 
 public class UserAccount extends AppCompatActivity {
 
-    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser,
+    private Button btnChangeEmail, btnChangePassword, btnSendResetEmail, btnRemoveUser, btnBack,
             changeEmail, changePassword, sendEmail, remove, signOut;
 
     private EditText oldEmail, newEmail, password, newPassword;
@@ -32,13 +32,13 @@ public class UserAccount extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_user_account);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(getString(R.string.app_name));
         setSupportActionBar(toolbar);
 
-        //get firebase auth instance
+        //get fire base auth instance
         auth = FirebaseAuth.getInstance();
 
         //get current user
@@ -60,6 +60,7 @@ public class UserAccount extends AppCompatActivity {
         btnChangeEmail = (Button) findViewById(R.id.change_email_button);
         btnChangePassword = (Button) findViewById(R.id.change_password_button);
         btnSendResetEmail = (Button) findViewById(R.id.sending_pass_reset_button);
+        btnBack = (Button) findViewById(R.id.btn_back);
         btnRemoveUser = (Button) findViewById(R.id.remove_user_button);
         changeEmail = (Button) findViewById(R.id.changeEmail);
         changePassword = (Button) findViewById(R.id.changePass);
@@ -82,6 +83,14 @@ public class UserAccount extends AppCompatActivity {
         remove.setVisibility(View.GONE);
 
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(UserAccount.this, MainActivity.class));
+                finish();
+            }
+        });
 
         if (progressBar != null) {
             progressBar.setVisibility(View.GONE);
