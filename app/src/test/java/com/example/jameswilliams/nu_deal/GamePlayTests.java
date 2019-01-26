@@ -11,7 +11,6 @@ import com.example.jameswilliams.nu_deal.nu_deal_game.MoneyCard;
 import com.example.jameswilliams.nu_deal.nu_deal_game.NUDeal;
 import com.example.jameswilliams.nu_deal.nu_deal_game.Player;
 import com.example.jameswilliams.nu_deal.nu_deal_game.PropertyCard;
-import com.example.jameswilliams.nu_deal.nu_deal_game.Set;
 
 import org.junit.Test;
 

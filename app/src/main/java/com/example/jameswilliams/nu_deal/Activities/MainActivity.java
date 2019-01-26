@@ -1,4 +1,4 @@
-package com.example.jameswilliams.nu_deal;
+package com.example.jameswilliams.nu_deal.Activities;
 
 
 import android.support.v7.app.AppCompatActivity;
@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.example.jameswilliams.nu_deal.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;

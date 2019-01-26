@@ -1,6 +1,6 @@
 package com.example.jameswilliams.nu_deal.nu_deal_game;
 
-import com.example.jameswilliams.nu_deal.MainActivity;
+import com.example.jameswilliams.nu_deal.Activities.MainActivity;
 
 import java.util.ArrayList;
 import java.util.Scanner;

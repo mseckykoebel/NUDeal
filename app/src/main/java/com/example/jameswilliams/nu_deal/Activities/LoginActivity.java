@@ -1,10 +1,12 @@
-package com.example.jameswilliams.nu_deal;
+package com.example.jameswilliams.nu_deal.Activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ProgressBar;
+
+import com.example.jameswilliams.nu_deal.R;
 
 public class LoginActivity extends AppCompatActivity {
 
