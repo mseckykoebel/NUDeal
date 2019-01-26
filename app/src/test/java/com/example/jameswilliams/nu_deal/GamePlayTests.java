@@ -25,10 +25,10 @@ import static org.junit.Assert.assertEquals;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class GamePlayTests {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
+    //@Test
+    //public void addition_isCorrect() {
+        //assertEquals(4, 2 + 2);
+    //}
 
     @Test
     public void deal_breaker_test(){
@@ -152,11 +152,17 @@ public class GamePlayTests {
         //Play the forced deal
         cardChoices.add(0);
 
+        //Select your own property
+        cardChoices.add(0);
+
         //Select the first player
         playerChoices.add(0);
 
         //Select the brown property
         cardChoices.add(0);
+
+        //End the turn
+        cardChoices.add(5);
 
         //Prep the user interface
         DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
@@ -227,6 +233,8 @@ public class GamePlayTests {
         //Select the brown property
         cardChoices.add(0);
 
+        cardChoices.add(5);
+
         //Prep the user interface
         DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
 
@@ -242,7 +250,7 @@ public class GamePlayTests {
         assertEquals("BalticAvenue", player1.getCardsFromSets().get(0).getName());
 
         //Make sure the sly deal made it to the discard pile
-        assertEquals(1, g.getDiscardPile().get(0).getClass() == SlyDeal.class);
+        assertEquals(true, g.getDiscardPile().get(0).getClass() == SlyDeal.class);
 
         //Same for player0
         assertEquals(0, player0.getBoardSize());
@@ -282,13 +290,16 @@ public class GamePlayTests {
         //Play the pass go
         cardChoices.add(0);
 
+        //End the turn
+        cardChoices.add(5);
+
         //Prep the user interface
         DummyUserInterface u = new DummyUserInterface(gameOutput, cardChoices, playerChoices, colorChoices);
 
         //Start the game
         NUDeal game = new NUDeal(g, u);
 
-        //Run two turns
+        //Run one turns
         game.executeTurn();
 
         //Make sure player0 has 4 cards

@@ -111,7 +111,15 @@ public class Player {
             return false;
         }
         //try removing the card
-        return t.remove(c);
+        if(!t.remove(c)){
+            return false;
+        }
+
+        //See if we need to delete the set
+        if(t.getNumPropertyCards() == 0){
+            sets.remove(t);
+        }
+        return true;
     }
 
 

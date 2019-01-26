@@ -14,7 +14,10 @@ public class SlyDeal extends Card
     // object constructor
     public SlyDeal()
     {
-        //TODO
+        name = "SlyDeal";
+        value = 3;
+        bankable = true;
+        banked = false;
     }
 
     @Override
@@ -47,7 +50,7 @@ public class SlyDeal extends Card
         g.addToDiscardPile(this);
 
         //Take the card from the target player
-        toGet.get(0).removeSelfFromPlayerHand(target);
+        target.removeFromBoard((PropertyCard) toGet.get(0));
 
         //Give the recieved card to the player
         p.addToBoard((PropertyCard) toGet.get(0));

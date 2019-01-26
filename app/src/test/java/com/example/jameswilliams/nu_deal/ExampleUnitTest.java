@@ -17,10 +17,10 @@ import static org.junit.Assert.*;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
+    //@Test
+    //public void addition_isCorrect() {
+        //assertEquals(4, 2 + 2);
+    //}
 
 
     @Test
@@ -217,9 +217,10 @@ public class ExampleUnitTest {
         //Make sure we can remove everything in the correct order
         assertEquals(true, set.remove(hotel));
         assertEquals(false, set.remove(hotel));
-        assertEquals(false, set.remove(house));
+        assertEquals(true, set.remove(house));
 
         assertEquals(true, set.remove(card0));
+        assertEquals(true, set.remove(card1));
 
     }
 
