@@ -1,16 +1,16 @@
 package com.example.jameswilliams.nu_deal;
 
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.DealBreaker;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.ForcedDeal;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.PassGo;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.SlyDeal;
-import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
-import com.example.jameswilliams.nu_deal.nu_deal_game.DummyUserInterface;
-import com.example.jameswilliams.nu_deal.nu_deal_game.GameState;
-import com.example.jameswilliams.nu_deal.nu_deal_game.MoneyCard;
-import com.example.jameswilliams.nu_deal.nu_deal_game.NUDeal;
-import com.example.jameswilliams.nu_deal.nu_deal_game.Player;
-import com.example.jameswilliams.nu_deal.nu_deal_game.PropertyCard;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.DealBreaker;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.ForcedDeal;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.PassGo;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.SlyDeal;
+import com.example.jameswilliams.nu_deal.GameFiles.Card;
+import com.example.jameswilliams.nu_deal.GameFiles.DummyUserInterface;
+import com.example.jameswilliams.nu_deal.GameFiles.GameState;
+import com.example.jameswilliams.nu_deal.GameFiles.MoneyCard;
+import com.example.jameswilliams.nu_deal.GameFiles.NUDeal;
+import com.example.jameswilliams.nu_deal.GameFiles.Player;
+import com.example.jameswilliams.nu_deal.GameFiles.PropertyCard;
 
 import org.junit.Test;
 

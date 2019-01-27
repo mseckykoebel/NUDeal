@@ -1,6 +1,6 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards;
+package com.example.jameswilliams.nu_deal.GameFiles.ActionCards;
 
-import com.example.jameswilliams.nu_deal.nu_deal_game.*;
+import com.example.jameswilliams.nu_deal.GameFiles.*;
 
 import java.util.ArrayList;
 

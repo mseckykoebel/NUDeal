@@ -1,14 +1,14 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.Birthday;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.DealBreaker;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.DebtCollector;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.DoubleRent;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.ForcedDeal;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.JustSayNo;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.PassGo;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.RentCard;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.SlyDeal;
-import com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards.WildRentCard;
+package com.example.jameswilliams.nu_deal.GameFiles;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.Birthday;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.DealBreaker;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.DebtCollector;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.DoubleRent;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.ForcedDeal;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.JustSayNo;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.PassGo;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.RentCard;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.SlyDeal;
+import com.example.jameswilliams.nu_deal.GameFiles.ActionCards.WildRentCard;
 
 import java.util.ArrayList;
 import java.util.Collections;

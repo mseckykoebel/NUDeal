@@ -1,10 +1,4 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game;
-
-import android.widget.Toast;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
+package com.example.jameswilliams.nu_deal.GameFiles;
 
 import java.util.ArrayList;
 

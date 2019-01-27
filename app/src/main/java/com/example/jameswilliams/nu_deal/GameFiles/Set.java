@@ -1,8 +1,5 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game;
+package com.example.jameswilliams.nu_deal.GameFiles;
 
-import android.util.Property;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class Set {

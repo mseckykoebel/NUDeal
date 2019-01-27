@@ -1,4 +1,4 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game;
+package com.example.jameswilliams.nu_deal.GameFiles;
 
 public class CardResponse {
     public boolean success;

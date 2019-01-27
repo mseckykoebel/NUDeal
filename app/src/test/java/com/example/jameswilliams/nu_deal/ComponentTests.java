@@ -1,8 +1,6 @@
 package com.example.jameswilliams.nu_deal;
 
-import android.util.Property;
-
-import com.example.jameswilliams.nu_deal.nu_deal_game.*;
+import com.example.jameswilliams.nu_deal.GameFiles.*;
 
 
 import org.junit.Test;

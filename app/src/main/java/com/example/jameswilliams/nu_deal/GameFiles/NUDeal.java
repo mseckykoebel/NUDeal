@@ -1,7 +1,4 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game;
-
-import java.util.*;
-import java.io.*;
+package com.example.jameswilliams.nu_deal.GameFiles;
 
 //Main game class for NUDeal
 //Handles game state as well as the hands

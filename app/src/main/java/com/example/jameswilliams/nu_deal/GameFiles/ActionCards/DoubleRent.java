@@ -1,9 +1,9 @@
-package com.example.jameswilliams.nu_deal.nu_deal_game.ActionCards;
+package com.example.jameswilliams.nu_deal.GameFiles.ActionCards;
 
-import com.example.jameswilliams.nu_deal.nu_deal_game.Card;
-import com.example.jameswilliams.nu_deal.nu_deal_game.CardResponse;
-import com.example.jameswilliams.nu_deal.nu_deal_game.GameState;
-import com.example.jameswilliams.nu_deal.nu_deal_game.UserInterface;
+import com.example.jameswilliams.nu_deal.GameFiles.Card;
+import com.example.jameswilliams.nu_deal.GameFiles.CardResponse;
+import com.example.jameswilliams.nu_deal.GameFiles.GameState;
+import com.example.jameswilliams.nu_deal.GameFiles.UserInterface;
 
 public class DoubleRent extends Card {
 
